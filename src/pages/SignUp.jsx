@@ -7,7 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 // 1. 위의 createUserJson 이건 user 리듀서의 미들웨어가 작동할 필요 없으므로 불필요.
 import apis from "../api/api";
 import styled from "styled-components";
-// import Header from "../component/header";
+import Header from "../components/Header";
 
 
 const Signup = (props) => {
@@ -109,7 +109,7 @@ const Signup = (props) => {
   };
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <div>
       <form onSubmit={onSubmitUserHandler} style={{marginTop:"30px"}}>
         아이디 :

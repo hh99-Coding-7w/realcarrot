@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { getCookie } from "../shared/Cookie";
 import { deleteCookie } from "../shared/Cookie";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -8,11 +8,24 @@ import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
 const Header = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const cookie = getCookie("token");
+
+  const [is_cookie, setCookie] = React.useState(false);
+
+  React.useEffect(() => {
+    if (cookie !== undefined) {
+      return setCookie(true);
+    }
+  }, []);
+
+  const onLogout = (e) => {
+    deleteCookie("token");
+    setCookie(false);
+  };
 
   return (
     <>
+    <div>
         <Link to="/" >
         <svg
           width="86"
@@ -55,33 +68,30 @@ const Header = () => {
           ></path>
         </svg>
         </Link>
-        <buttons
-          style={{ width: "100px", padding: "10px" }}
-          _onClick={() => {
-            dispatch(userActions.logOut());
-            navigate("/");
-            deleteCookie("token");
-          }}
-        >
-          logout
-        </buttons>
+        {is_cookie ? (
+          <Link to="/">
+            <h3 onClick={onLogout}>로그아웃</h3>
+          </Link>
+        ) : (
+          <>
+            <Link to="/login">
+              <h3>로그인</h3>
+            </Link>
+            <Link
+              to="/signup">
+              <h3>회원가입</h3>
+            </Link>
+          </>
+        )}
+
+        <Link to="/post">
+          <h3>글작성</h3>
+        </Link>
+      </div>
     </>
   );
 };
+       
 
-const HeaderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 90px;
-  border-bottom: 3px solid #2e2727;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: calc(100% - 40px);
-  padding: 20px;
-  height: 60px;
-`;
 
 export default Header;

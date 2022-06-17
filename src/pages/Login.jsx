@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux/es/exports";
 import apis from "../api/api";
 import { setCookie } from "../shared/Cookie";
 import Cookies from "../shared/Cookie";
-// import Header from "../component/header";
+import Header from "../components/Header";
 import styled from "styled-components";
 
 const Login = () => {
@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <div>
     <>
-      {/* <Header /> */}
+      <Header />
       <div>
         <h1>로그인페이지</h1>
         <form>
