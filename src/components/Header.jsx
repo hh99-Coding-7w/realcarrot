@@ -95,6 +95,7 @@ const Header = () => {
           </>
         )}
       </Wrap>
+
     </>
   );
 };
@@ -104,6 +105,15 @@ const Svg = styled.div`
 
 const Wrap = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  height: 30px;
   margin: auto;
 `
        
