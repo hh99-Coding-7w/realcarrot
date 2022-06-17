@@ -1,12 +1,19 @@
 import React from "react";
-import Header from "../components/Header";
+import styled from "styled-components";
 
+import { deleteCookie } from "../shared/Cookie";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
-const Home = () => {
+const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <>
-      <Header/>
-      <div>
+        <Link to="/" >
         <svg
           width="86"
           height="26"
@@ -47,74 +54,34 @@ const Home = () => {
             fill="#FF8A3D"
           ></path>
         </svg>
-        <a class="u6pd22m sf2nnw4 sf2nnw2 u6pd22n">중고거래</a>
-      </div>
-      <div>
-        <section id="home-main-section-top" class="background-pale-peach">
-          <div id="home-main-top">
-            <div class="home-main-desc">
-              <h1 class="home-main-title">
-                당신 근처의
-                <br />
-                당근마켓
-              </h1>
-              <p class="text-m">
-                중고 거래부터 동네 정보까지, 이웃과 함께해요.
-                <br />
-                가깝고 따뜻한 당신의 근처를 만들어요.
-              </p>
-            </div>
-            <div class="home-main-image-top">
-              <img
-                srcset="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-top-d6869a79bc4cb58ea59aa5a408decfdf4a4ba60ac639837081da12861083cdbb.webp "
-                class="home-main-image-top"
-                alt="중고거래, 동네생활 질문글과 동네가게"
-                src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-top-68ba12f0da7b5af9a574ed92ca8b3a9c0068db176b566dd374ee50359693358b.png"
-              />
-            </div>
-            <div>
-              <section class="home-main-section">
-                <div class="home-main-content">
-                  <div class="home-main-image home-main-image-01">
-                    <img
-                      srcset="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-1-cc678e9a217b96f5cb459f7f0684f5ba67706f9889801618b8cf879fbc2c0ea7.webp "
-                      class="home-main-image-01"
-                      alt="우리동네 중고 직거래 사진"
-                      src="https://d1unjqcospf8gs.cloudfront.net/assets/home/main/3x/image-1-39ac203e8922f615aa3843337871cb654b81269e872494128bf08236157c5f6a.png"
-                    />
-                  </div>
-                  <div>
-                    <h1 class="home-main-title">
-                      우리 동네
-                      <br />
-                      중고 직거래 마켓
-                    </h1>
-                    <p class="text-m">
-                      동네 주민들과 가깝고 따뜻한 거래를 지금 경험해보세요.
-                    </p>
-                    <div class="home-buttons">
-                      <a
-                        class="home-button text-l text-bold"
-                        href="/hot_articles"
-                      >
-                        인기매물 보기
-                      </a>
-                      <a
-                        class="home-button text-l text-bold ml-3"
-                        href="/trust"
-                      >
-                        믿을 수 있는 중고거래
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </section>
-      </div>
+        </Link>
+        <buttons
+          style={{ width: "100px", padding: "10px" }}
+          _onClick={() => {
+            dispatch(userActions.logOut());
+            navigate("/");
+            deleteCookie("token");
+          }}
+        >
+          logout
+        </buttons>
     </>
   );
 };
 
-export default Home;
+const HeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  border-bottom: 3px solid #2e2727;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100% - 40px);
+  padding: 20px;
+  height: 60px;
+`;
+
+export default Header;
