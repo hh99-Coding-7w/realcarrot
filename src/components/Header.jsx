@@ -11,7 +11,7 @@ const Header = () => {
   const cookie = getCookie("token");
 
   const [is_cookie, setCookie] = React.useState(false);
-
+  
   React.useEffect(() => {
     if (cookie !== undefined) {
       return setCookie(true);
@@ -25,8 +25,9 @@ const Header = () => {
 
   return (
     <>
-    <div>
+    <Wrap>
         <Link to="/" >
+          <Svg>
         <svg
           width="86"
           height="26"
@@ -67,6 +68,7 @@ const Header = () => {
             fill="#FF8A3D"
           ></path>
         </svg>
+        </Svg>
         </Link>
         {is_cookie ? (
           <Link to="/">
@@ -74,24 +76,86 @@ const Header = () => {
           </Link>
         ) : (
           <>
+          <Input placeholder="물품이나 동네를 검색해보세요"></Input>
+        <Link to="/post">
+          <Write>
+          <h3>글작성</h3>
+          </Write>
+        </Link>
             <Link to="/login">
-              <h3>로그인</h3>
+                 <Login>
+              <h3>로그인</h3>        
+              </Login>
             </Link>
-            <Link
-              to="/signup">
+            <Link to="/signup">
+              <SignUp>
               <h3>회원가입</h3>
+              </SignUp>
             </Link>
           </>
         )}
-
-        <Link to="/post">
-          <h3>글작성</h3>
-        </Link>
-      </div>
+      </Wrap>
     </>
   );
 };
+const Svg = styled.div`
+  margin-top: 20px;
+`
+
+const Wrap = styled.div`
+  display: flex;
+  margin: auto;
+`
        
+const Input = styled.input`
+  line-height: 1.4;
+  background-color: #f2f3f6;
+  box-sizing: border-box;
+  border: none;
+  width: 250px;
+  color: #212124;
+  line-height: 1.36;
+  margin: 16px 0px;
+  padding: 9px 12px;
+;
+`
 
+const Login = styled.button`
+  background-color: #fff;
+  opacity: .7;
+  line-height: 1.3;
+  display: block;
+  white-space: nowrap;
+  color: #212124;
+  padding: 10px 20px;
+  border-radius: 10px;
+  &:hover {background-color:#f2f3f6 }
+  margin-top: 16px;
+`
 
+const SignUp = styled.button`
+  background-color: #fff;
+  opacity: .7;
+  line-height: 1.3;
+  display: block;
+  white-space: nowrap;
+  color: #212124;
+  padding: 10px 20px;
+  border-radius: 10px;
+  &:hover {background-color:#f2f3f6 }
+  margin-top: 16px;
+`
+
+const Write = styled.button`
+  background-color: #fff;
+  opacity: .7;
+  line-height: 1.3;
+  display: block;
+  white-space: nowrap;
+  color: #212124;
+  padding: 10px 20px;
+  border-radius: 10px;
+  &:hover {background-color:#f2f3f6 }
+  margin-top: 16px;
+`
 export default Header;
