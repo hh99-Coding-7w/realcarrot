@@ -8,7 +8,10 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
 // import Header from "../component/header";
+
+
 const Signup = (props) => {
+    
   const navigate = useNavigate();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -27,6 +30,9 @@ const Signup = (props) => {
   } else if (Password !== Password2) {
     check.current.innerText = ":x:";
   }
+
+ 
+  
   //아이디,비번,닉네임 정규식
   const idCheck = (id) => {
     let regExp = /^[0-9a-zA-Z]{4,}$/;
@@ -104,11 +110,10 @@ const Signup = (props) => {
   return (
     <div>
       {/* <Header /> */}
-      <Wrap>
-      <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcW8oAK%2FbtrEU2FQuwe%2FUNUK6A2BvB1knFPLeK6E6K%2Fimg.png" style={{width:"100%"}}/>
+      <div>
       <form onSubmit={onSubmitUserHandler} style={{marginTop:"30px"}}>
         아이디 :
-        <Inputbox
+        <input
           type="text"
           placeholder="아이디를 입력하세요"
           value={Username}
@@ -119,7 +124,7 @@ const Signup = (props) => {
         <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요</h6>
         <br />
         비밀번호 :
-        <Inputbox
+        <input
           type="password"
           placeholder="비밀번호를 입력하세요"
           value={Password}
@@ -128,12 +133,12 @@ const Signup = (props) => {
           }}
           ref={password}
         />
-        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
+        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
         <br />
         비밀번호 재확인 :
-        <Inputbox
+        <input
           type="password"
-          placeholder="비밀번호를 재입력하세요"
+          placeholder="비밀번호를 재입력하세요."
           value={Password2}
           onChange={(event) => {
             setPassword2(event.target.value);
@@ -141,12 +146,12 @@ const Signup = (props) => {
           ref={password2}
         />
         <p ref={check} />
-        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요</h6>
+        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
         <br />
         닉네임 :
-        <Inputbox
+        <input
           type="text"
-          placeholder="예전 느낌 살려서! 큰거온다!!!"
+          placeholder="닉네임을 입력해 주세요."
           value={Nickname}
           onChange={(event) => {
             setNickname(event.target.value);
@@ -154,6 +159,9 @@ const Signup = (props) => {
         />
         <h6>닉네임은 당신의 멋대로에요</h6>
         <br />
+        <>
+        
+        </>
         프로필 사진
         {fileImage && (
           <img
@@ -161,7 +169,7 @@ const Signup = (props) => {
             src={fileImage}
             style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
           />)}
-          <Inputbox
+          <Input
             name="imgUpload"
             type="file"
             accept="image/*"
@@ -169,46 +177,18 @@ const Signup = (props) => {
             onChange={saveFileImage}
           />
           <div style={{ fontSize: "10px", color: "tomato" }}>
-            사진변경하지 말아주세요 오류생겨요...:울음:
           </div>
-          <Button>{isLoading ? "가입 중... " : "가입하기"}</Button>
+          <button>{isLoading ? "가입 중... " : "가입하기"}</button>
         </form>
-      </Wrap>
+      </div>
     </div>
+    
   );
 };
 const Input = styled.input`
   display: ${(props) => (props.fileImage ? "none" : "")};
 `;
-const Wrap = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: black;
-  margin: 15% auto;
-  border: 1px white solid;
-  width: 50%;
-  background-color: wheat;
-`;
-const Title = styled.div`
-  margin-top: 10px;
-  color: black;
-`;
-const Inputbox = styled.input`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 20px;
-  width: 90%;
-  height: 30%;
-`;
-const Button = styled.button`
-  padding: 3px;
-  margin-left: 140px;
-  margin-bottom: 20px;
-`;
+
 
 export default Signup;
 
