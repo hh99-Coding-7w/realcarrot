@@ -38,12 +38,22 @@ const Login = () => {
     }
   };
 
-
   return (
-    <div>
     <>
       <Header />
       <div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <h1>로그인페이지</h1>
         <form>
           <input type="text" placeholder="ID" ref={id_ref}></input>
@@ -59,9 +69,7 @@ const Login = () => {
         </form>
       </div>
     </>
-    </div>
-  )
-}
+  );
+};
 
-
-export default Login
+export default Login;
