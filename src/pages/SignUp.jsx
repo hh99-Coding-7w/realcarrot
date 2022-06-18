@@ -8,17 +8,21 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import apis from "../api/api";
 import styled from "styled-components";
 import Header from "../components/Header";
+//드롭다운
+import DrupDown from "../components/DrupDown";
 
-const Signup = (props) => {
+const Signup = (props,{Children}) => {
   const navigate = useNavigate();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [Password2, setPassword2] = useState("");
   const [Nickname, setNickname] = useState("");
+  const [Location,setLocation] = useState("")
   const [error, setError] = useState();
   const [pwcheck, setPwCheck] = React.useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [fileImage, setFileImage] = React.useState("");
+  const location = React.useRef()
   const fileInputRef = React.useRef();
   const password = React.useRef();
   const password2 = React.useRef();
@@ -50,7 +54,6 @@ const Signup = (props) => {
     if (
       Username === "" ||
       Password === "" ||
-      //   Password2 === "" ||
       Nickname === "" ||
       fileImage === ""
     ) {
@@ -82,7 +85,7 @@ const Signup = (props) => {
       password: Password,
       nickname: Nickname,
       profileImage: fileInputRef.current?.url,
-      location: "종로구",
+      location: Location,
     });
     console.log(res);
     // alert(res.data.body[0].message);
@@ -165,6 +168,7 @@ const Signup = (props) => {
         />
         <br />
         <>
+        <DrupDown setLocation={setLocation} Location={Location}></DrupDown>
         </>
         프로필 사진
         {fileImage && (
