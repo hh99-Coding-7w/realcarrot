@@ -9,9 +9,7 @@ import apis from "../api/api";
 import styled from "styled-components";
 import Header from "../components/Header";
 
-
 const Signup = (props) => {
-    
   const navigate = useNavigate();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -31,8 +29,6 @@ const Signup = (props) => {
     check.current.innerText = ":x:";
   }
 
- 
-  
   //아이디,비번,닉네임 정규식
   const idCheck = (id) => {
     let regExp = /^[0-9a-zA-Z]{4,}$/;
@@ -54,7 +50,7 @@ const Signup = (props) => {
     if (
       Username === "" ||
       Password === "" ||
-    //   Password2 === "" ||
+      //   Password2 === "" ||
       Nickname === "" ||
       fileImage === ""
     ) {
@@ -108,7 +104,7 @@ const Signup = (props) => {
     fileInputRef.current = { url: file_url };
   };
   return (
-    <div>
+    <>
       <Header />
       <br/>
       <br/>
@@ -184,19 +180,15 @@ const Signup = (props) => {
             ref={fileInputRef}
             onChange={saveFileImage}
           />
-          <div style={{ fontSize: "10px", color: "tomato" }}>
-          </div>
+          <div style={{ fontSize: "10px", color: "tomato" }}></div>
           <button>{isLoading ? "가입 중... " : "가입하기"}</button>
         </form>
       </div>
-    </div>
-    
+    </>
   );
 };
 const Input = styled.input`
   display: ${(props) => (props.fileImage ? "none" : "")};
 `;
 
-
 export default Signup;
-

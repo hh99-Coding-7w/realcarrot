@@ -42,15 +42,10 @@ const Login = () => {
     }
   };
 
-
   return (
-    <div>
     <>
       <Header />
       <div>
-        <br/>
-        <br/>
-        <br/>
         <br/>
         <br/>
         <br/>
@@ -78,9 +73,7 @@ const Login = () => {
         </form>
       </div>
     </>
-    </div>
-  )
-}
+  );
+};
 
-
-export default Login
+export default Login;
