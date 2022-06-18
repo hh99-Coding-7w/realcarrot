@@ -78,7 +78,7 @@ const Header = () => {
         {is_cookie ? (
           <>
           <PostSearch></PostSearch>
-          <Link to="/post">
+          <Link to="/post/add">
           <Write>
           <h3>글작성</h3>
           </Write>
