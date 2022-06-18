@@ -6,6 +6,7 @@ const ADD_POST = "ADD_POST";
 const LOAD_POST = "LOAD_POST";
 const DELETE_POST = "DELETE_POST";
 const UPDATE_POST = "UPDATE_POST";
+const LOAD_DETAIL = "LOAD_DETAIL";
 // const LOAD_DETAIL = "LOAD_DETAIL";
 
 //액션 크리에이터
@@ -25,6 +26,10 @@ const updatePost = (payload) => {
   return { type: UPDATE_POST, payload };
 };
 
+const loadDetail = (payload) => {
+  return { type: LOAD_DETAIL, payload };
+};
+
 //initial state
 const initialState = {
   data: [],
@@ -32,7 +37,7 @@ const initialState = {
 
 //청크
 export const __addPost = (payload) => async (dispatch) => {
-  console.log(payload);
+  // console.log(payload);
   const myToken = getCookie("token");
   console.log(myToken);
   try {
@@ -64,44 +69,80 @@ export const __loadPost = (payload) => async (dispatch) => {
   const myToken = getCookie("token");
   // console.log(myToken);
   try {
-    const response = await axios.get(
-      "http://3.39.25.179/api/posts",
-      {
-        title: payload.title,
-        content: payload.content,
-        price: payload.price,
-        location: payload.location,
-        imageUrls: payload.imageUrls,
+    const response = await axios.get("http://3.39.25.179/api/posts", {
+      headers: {
+        Authorization: `Bearer ${myToken}`,
       },
-      {
-        headers: {
-          Authorization: myToken,
-        },
-      }
-    );
-    // console.log(response);
+    });
+    console.log(response);
     dispatch(loadPost(response.data));
   } catch (error) {
     window.alert("error!");
   }
 };
 
-// export const __deletePost = (payload) => async (dispatch) => {
-//   console.log(payload);
-//   const myToken = getCookie("token");
-//   console.log(myToken);
-//   try {
-//     await axios.delete(`http://3.39.25.179/api/post/${id}`, {
-//       headers: {
-//         Authorization: myToken,
-//       },
-//     });
-//     dispatch(deletePost(payload.id));
-//     window.alert("삭제완료!");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const __deletePost = (payload) => async (dispatch) => {
+  // console.log(payload);
+  const myToken = getCookie("token");
+  // console.log(myToken);
+  try {
+    await axios.delete(`http://3.39.25.179/api/post/${payload.id}`, {
+      headers: {
+        Authorization: `Bearer ${myToken}`,
+      },
+    });
+    dispatch(deletePost(payload.id));
+    window.alert("삭제완료!");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const __updatePost = (payload) => async (dispatch) => {
+  // console.log(payload);
+  const myToken = getCookie("token");
+  // console.log(myToken);
+  try {
+    await axios.put(
+      `http://3.39.25.179/api/post/${payload.id}`,
+      {
+        title: payload.title,
+        content: payload.content,
+        price: payload.price,
+        location: payload.location,
+        imageUrls: [...payload.imageUrls],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${myToken}`,
+        },
+      }
+    );
+    dispatch(updatePost(payload.id));
+    window.alert("수정 완료!");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const __loadDetail = (payload) => async (dispatch) => {
+  // console.log(payload);
+  const myToken = getCookie("token");
+  try {
+    const response = await axios.get(
+      `http://3.39.25.179/api/post/${payload.id}`,
+      {
+        headers: {
+          Authorization: myToken,
+        },
+      }
+    );
+    console.log(response);
+    dispatch(loadDetail(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 //리듀서
 const postReducer = (state = initialState, action) => {
@@ -112,11 +153,17 @@ const postReducer = (state = initialState, action) => {
     case LOAD_POST:
       return { ...state, data: action.payload };
 
-    // case DELETE_POST:
-    //   const newDeletedata = state.data.filter((value) => {
-    //     return value.id !== Number(action.payload);
-    //   });
-    //   return { ...state, data: [...newDeletedata] };
+    case DELETE_POST:
+      const newDeletedata = state.data.filter((value) => {
+        return value.id !== Number(action.payload);
+      });
+      return { ...state, data: [...newDeletedata] };
+
+    case UPDATE_POST:
+      return { ...state, data: action.payload };
+
+    case LOAD_DETAIL:
+      return { ...state, data: action.payload };
 
     default:
       return state;

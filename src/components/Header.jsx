@@ -5,12 +5,11 @@ import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
 import PostSearch from "./Search";
 
-
 const Header = () => {
   const cookie = getCookie("token");
   const [is_cookie, setCookie] = React.useState(false);
-  
-  console.log(cookie)
+
+  console.log(cookie);
 
   React.useEffect(() => {
     if (cookie !== undefined) {
@@ -71,25 +70,25 @@ const Header = () => {
           </Svg>
         </Link>
         <Link to="/Main">
-              <Main1>
-                <h3>중고거래</h3>
-              </Main1>
+          <Main1>
+            <h3>중고거래</h3>
+          </Main1>
         </Link>
         {is_cookie ? (
           <>
-          <PostSearch></PostSearch>
-          <Link to="/post/add">
-          <Write>
-          <h3>글작성</h3>
-          </Write>
-        </Link>
-          <Link to="/">
-            <h3 onClick={onLogout}>로그아웃</h3>
-          </Link>
+            <PostSearch></PostSearch>
+            <Link to="/post/add">
+              <Write>
+                <h3>글작성</h3>
+              </Write>
+            </Link>
+            <Link to="/">
+              <h3 onClick={onLogout}>로그아웃</h3>
+            </Link>
           </>
         ) : (
           <>
-          <PostSearch></PostSearch>
+            <PostSearch></PostSearch>
             <Link to="/login">
               <Login>
                 <h3>로그인</h3>
@@ -123,7 +122,6 @@ const Wrap = styled.div`
   height: 30px;
   margin: auto;
 `;
-
 
 const Login = styled.button`
   background-color: #fff;
@@ -171,7 +169,7 @@ const Write = styled.button`
 `;
 
 const Main1 = styled.button`
-   background-color: #fff;
+  background-color: #fff;
   opacity: 0.7;
   line-height: 1.3;
   display: block;
@@ -183,6 +181,6 @@ const Main1 = styled.button`
     background-color: #f2f3f6;
   }
   margin-top: 16px;
-`
+`;
 
 export default Header;
