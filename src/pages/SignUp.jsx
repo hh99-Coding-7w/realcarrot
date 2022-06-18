@@ -106,76 +106,73 @@ const Signup = (props) => {
   return (
     <>
       <Header />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <div>
-        <form onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
-          아이디 :
-          <input
-            type="text"
-            placeholder="아이디를 입력하세요"
-            value={Username}
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-          <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요</h6>
-          <br />
-          비밀번호 :
-          <input
-            type="password"
-            placeholder="비밀번호를 입력하세요"
-            value={Password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            ref={password}
-          />
-          <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
-          <br />
-          비밀번호 재확인 :
-          <input
-            type="password"
-            placeholder="비밀번호를 재입력하세요."
-            value={Password2}
-            onChange={(event) => {
-              setPassword2(event.target.value);
-            }}
-            ref={password2}
-          />
-          <p ref={check} />
-          <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
-          <br />
-          닉네임 :
-          <input
-            type="text"
-            placeholder="닉네임을 입력해 주세요."
-            value={Nickname}
-            onChange={(event) => {
-              setNickname(event.target.value);
-            }}
-          />
-          <h6>닉네임은 당신의 멋대로에요</h6>
-          <br />
-          <></>
-          프로필 사진
-          {fileImage && (
-            <img
-              alt="sample"
-              src={fileImage}
-              style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
-            />
-          )}
+      <form onSubmit={onSubmitUserHandler} style={{marginTop:"30px"}}>
+        아이디 :
+        <input
+          type="text"
+          placeholder="아이디를 입력하세요"
+          value={Username}
+          onChange={(event) => {
+            setUsername(event.target.value);
+          }}
+        />
+        <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요</h6>
+        <br />
+        비밀번호 :
+        <input
+          type="password"
+          placeholder="비밀번호를 입력하세요"
+          value={Password}
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+          ref={password}
+        />
+        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
+        <br />
+        비밀번호 재확인 :
+        <input
+          type="password"
+          placeholder="비밀번호를 재입력하세요."
+          value={Password2}
+          onChange={(event) => {
+            setPassword2(event.target.value);
+          }}
+          ref={password2}
+        />
+        <p ref={check} />
+        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
+        <br />
+        닉네임 :
+        <input
+          type="text"
+          placeholder="닉네임을 입력해 주세요."
+          value={Nickname}
+          onChange={(event) => {
+            setNickname(event.target.value);
+          }}
+        />
+        <br />
+        <>
+        </>
+        프로필 사진
+        {fileImage && (
+          <img
+            alt="sample"
+            src={fileImage}
+            style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
+          />)}
           <Input
             name="imgUpload"
             type="file"
