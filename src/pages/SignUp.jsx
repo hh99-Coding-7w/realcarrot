@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { storage } from "../shared/Firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 // import { createUserJson } from "../redux/modules/user";
@@ -18,11 +17,7 @@ const Signup = (props,{Children}) => {
   const [Password2, setPassword2] = useState("");
   const [Nickname, setNickname] = useState("");
   const [Location,setLocation] = useState("")
-  const [error, setError] = useState();
-  const [pwcheck, setPwCheck] = React.useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [fileImage, setFileImage] = React.useState("");
-  const location = React.useRef()
   const fileInputRef = React.useRef();
   const password = React.useRef();
   const password2 = React.useRef();
@@ -76,10 +71,6 @@ const Signup = (props,{Children}) => {
       window.alert("올바른 닉네임 형식을 작성해주세요");
       return;
     }
-    // fileInputRef.current?.url,
-    //디텔가져오는거
-    // const ret = await apis.getDetail(1)
-    // console.log(ret)
     const res = await apis.addUser({
       username: Username,
       password: Password,
@@ -88,38 +79,23 @@ const Signup = (props,{Children}) => {
       location: Location,
     });
     console.log(res);
-    // alert(res.data.body[0].message);
     navigate("/login");
   };
   //사진 업로드
   const saveFileImage = async (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
-    // console.log(URL.createObjectURL(e.target.files[0]))
-    // // ref로도 확인해봅시다. :)
-    // console.log(fileInputRef.current.files[0]);
     const uploaded_file = await uploadBytes(
       ref(storage, `profileimages/${e.target.files[0].name}`),
       e.target.files[0]
     );
-    // console.log(uploaded_file);
     const file_url = await getDownloadURL(uploaded_file.ref);
-    // console.log(file_url);
     fileInputRef.current = { url: file_url };
   };
   return (
     <>
       <Header />
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div>
+      <FatherBox>
+      <Box>
       <form onSubmit={onSubmitUserHandler} style={{marginTop:"30px"}}>
         아이디 :
         <input
@@ -185,14 +161,27 @@ const Signup = (props,{Children}) => {
             onChange={saveFileImage}
           />
           <div style={{ fontSize: "10px", color: "tomato" }}></div>
-          <button>{isLoading ? "가입 중... " : "가입하기"}</button>
+          <button onClick={()=>{
+            window.alert("완료되었습니다.")
+          }}>가입하기</button>
         </form>
-      </div>
+        </Box>
+        </FatherBox>
     </>
   );
 };
 const Input = styled.input`
   display: ${(props) => (props.fileImage ? "none" : "")};
+`;
+const FatherBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Box = styled.div`
+  padding-top: 300px ;
+  margin: 0px 163.5px;
 `;
 
 export default Signup;
