@@ -95,7 +95,7 @@ export const __searchPost = createAsyncThunk(
   async (payload) => {
     try {
       console.log(payload)
-      const response = await axios.get(`http://3.39.25.179/api/posts/search?keyword=${payload}`)
+      const response = await axios.get(`http://3.39.25.179/api/posts/search?keyword${payload}`)
       return response.data;
     }catch (error) {
       const errorMsg = JSON.parse(error.request.response)

@@ -2,11 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { getCookie } from "../shared/Cookie";
 import { deleteCookie } from "../shared/Cookie";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { useSelector } from "react-redux";
 import PostSearch from "./Search";
 
 
@@ -74,10 +70,13 @@ const Header = () => {
             </svg>
           </Svg>
         </Link>
-
+        <Link to="/Main">
+              <Main1>
+                <h3>중고거래</h3>
+              </Main1>
+        </Link>
         {is_cookie ? (
           <>
-
           <PostSearch></PostSearch>
           <Link to="/post">
           <Write>
@@ -91,7 +90,6 @@ const Header = () => {
         ) : (
           <>
           <PostSearch></PostSearch>
-
             <Link to="/login">
               <Login>
                 <h3>로그인</h3>
@@ -126,17 +124,6 @@ const Wrap = styled.div`
   margin: auto;
 `;
 
-const Input = styled.input`
-  line-height: 1.4;
-  background-color: #f2f3f6;
-  box-sizing: border-box;
-  border: none;
-  width: 250px;
-  color: #212124;
-  line-height: 1.36;
-  margin: 16px 0px;
-  padding: 9px 12px; ;
-`;
 
 const Login = styled.button`
   background-color: #fff;
@@ -182,4 +169,20 @@ const Write = styled.button`
   }
   margin-top: 16px;
 `;
+
+const Main1 = styled.button`
+   background-color: #fff;
+  opacity: 0.7;
+  line-height: 1.3;
+  display: block;
+  white-space: nowrap;
+  color: #212124;
+  padding: 10px 20px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #f2f3f6;
+  }
+  margin-top: 16px;
+`
+
 export default Header;
