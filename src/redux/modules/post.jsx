@@ -51,7 +51,7 @@ export const __addPost = (payload) => async (dispatch) => {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
     window.alert("작성완료!");
     dispatch(addPost(response.data));
   } catch (error) {
@@ -79,7 +79,7 @@ export const __loadPost = (payload) => async (dispatch) => {
         },
       }
     );
-    console.log(response);
+    // console.log(response);
     dispatch(loadPost(response.data));
   } catch (error) {
     window.alert("error!");
