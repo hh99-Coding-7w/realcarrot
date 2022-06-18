@@ -7,12 +7,16 @@ import { setCookie } from "../shared/Cookie";
 import Cookies from "../shared/Cookie";
 import Header from "../components/Header";
 import styled from "styled-components";
+import { loginDB } from "../redux/modules/user";
+
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id_ref = useRef(null);
   const password_ref = useRef(null);
+
+
 
   const onLoginClick = async (event) => {
     event.preventDefault(); //1. !!아마 왼쪽꺼 필요없는 걸로 암.
@@ -44,6 +48,21 @@ const Login = () => {
     <>
       <Header />
       <div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <h1>로그인페이지</h1>
         <form>
           <input type="text" placeholder="ID" ref={id_ref}></input>

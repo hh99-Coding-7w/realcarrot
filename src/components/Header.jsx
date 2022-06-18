@@ -6,12 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { useSelector } from "react-redux";
+import PostSearch from "./Search";
+
 
 const Header = () => {
   const cookie = getCookie("token");
-
   const [is_cookie, setCookie] = React.useState(false);
+
   
+  console.log(cookie)
+
   React.useEffect(() => {
     if (cookie !== undefined) {
       return setCookie(true);
@@ -71,17 +76,20 @@ const Header = () => {
         </Svg>
         </Link>
         {is_cookie ? (
-          <Link to="/">
-            <h3 onClick={onLogout}>로그아웃</h3>
-          </Link>
-        ) : (
           <>
-          <Input placeholder="물품이나 동네를 검색해보세요"></Input>
-        <Link to="/post">
+          <PostSearch></PostSearch>
+          <Link to="/post">
           <Write>
           <h3>글작성</h3>
           </Write>
         </Link>
+          <Link to="/">
+            <h3 onClick={onLogout}>로그아웃</h3>
+          </Link>
+          </>
+        ) : (
+          <>
+          <PostSearch></PostSearch>
             <Link to="/login">
                  <Login>
               <h3>로그인</h3>        

@@ -110,6 +110,16 @@ const Signup = (props) => {
   return (
     <div>
       <Header />
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
       <div>
       <form onSubmit={onSubmitUserHandler} style={{marginTop:"30px"}}>
         아이디 :
@@ -157,10 +167,8 @@ const Signup = (props) => {
             setNickname(event.target.value);
           }}
         />
-        <h6>닉네임은 당신의 멋대로에요</h6>
         <br />
         <>
-        
         </>
         프로필 사진
         {fileImage && (
