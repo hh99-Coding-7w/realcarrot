@@ -12,6 +12,7 @@ const PostAdd = () => {
   const contentRef = useRef(null);
   const priceRef = useRef(null);
   const locationRef = useRef(null);
+  const imageUrlsRef = useRef(null);
 
   const addPost = () => {
     dispatch(
@@ -19,8 +20,7 @@ const PostAdd = () => {
         title: titleRef.current.value,
         content: contentRef.current.value,
         price: priceRef.current.value,
-        location: locationRef.current.value,
-        image: [],
+        imageUrls: imageUrlsRef.current.value,
       })
     );
     navigate("/main");
@@ -28,6 +28,18 @@ const PostAdd = () => {
   return (
     <>
       <Header />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div>
         <p>제목</p>
         <input ref={titleRef} type="text" placeholder="제목을 입력해주세요" />
@@ -41,11 +53,11 @@ const PostAdd = () => {
         <input ref={priceRef} type="number" placeholder="가격을 입력해주세요" />
       </div>
       <div>
-        <p>지역</p>
+        <p>이미지</p>
         <input
-          ref={locationRef}
+          ref={imageUrlsRef}
           type="text"
-          placeholder="지역을 입력해주세요"
+          placeholder="이미지을 입력해주세요"
         />
       </div>
       <button onClick={addPost}>작성완료</button>

@@ -33,8 +33,8 @@ const initialState = {
 //청크
 export const __addPost = (payload) => async (dispatch) => {
   console.log(payload);
-  const myToken = getCookie("Authorization");
-  console.log(myToken)
+  const myToken = getCookie("token");
+  console.log(myToken);
   try {
     const response = await axios.post(
       "http://3.39.25.179/api/posting",
@@ -43,27 +43,84 @@ export const __addPost = (payload) => async (dispatch) => {
         content: payload.content,
         price: payload.price,
         location: payload.location,
-        image: payload.image,
-      }, {
+        imageUrls: [...payload.imageUrls],
+      },
+      {
         headers: {
-          Authorization : myToken,
-        }
+          Authorization: `Bearer ${myToken}`,
+        },
       }
-    )
-    console.log(response)
-    window.alert("작성완료!")
-    dispatch(addPost(response.data))
+    );
+    console.log(response);
+    window.alert("작성완료!");
+    dispatch(addPost(response.data));
   } catch (error) {
-    window.alert("error!")
+    window.alert("error!");
   }
-}
+};
+
+export const __loadPost = (payload) => async (dispatch) => {
+  // console.log(payload);
+  const myToken = getCookie("token");
+  // console.log(myToken);
+  try {
+    const response = await axios.get(
+      "http://3.39.25.179/api/posts",
+      {
+        title: payload.title,
+        content: payload.content,
+        price: payload.price,
+        location: payload.location,
+        imageUrls: payload.imageUrls,
+      },
+      {
+        headers: {
+          Authorization: myToken,
+        },
+      }
+    );
+    console.log(response);
+    dispatch(loadPost(response.data));
+  } catch (error) {
+    window.alert("error!");
+  }
+};
+
+// export const __deletePost = (payload) => async (dispatch) => {
+//   console.log(payload);
+//   const myToken = getCookie("token");
+//   console.log(myToken);
+//   try {
+//     await axios.delete(`http://3.39.25.179/api/post/${id}`, {
+//       headers: {
+//         Authorization: myToken,
+//       },
+//     });
+//     dispatch(deletePost(payload.id));
+//     window.alert("삭제완료!");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 //리듀서
 const postReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_POST:
-            // return{...state, data: [...state.data, action.payload]}
-    }
-}
+  switch (action.type) {
+    case ADD_POST:
+      return { ...state, data: [...state.data, action.payload] };
+
+    case LOAD_POST:
+      return { ...state, data: action.payload };
+
+    // case DELETE_POST:
+    //   const newDeletedata = state.data.filter((value) => {
+    //     return value.id !== Number(action.payload);
+    //   });
+    //   return { ...state, data: [...newDeletedata] };
+
+    default:
+      return state;
+  }
+};
 
 export default postReducer;
