@@ -9,7 +9,7 @@ const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = getCookie("token");
-  const { datas } = useSelector((state) => state.postReducer);
+  const datas = useSelector((state) => state.postReducer.data);
 
   useEffect(() => {
     dispatch(__loadPost(token));
@@ -33,33 +33,35 @@ const Main = () => {
       <br />
       {datas?.map((data) => (
         <div
-          key={data.id}
+          key={data?.id}
           onClick={() => {
-            navigate(`/post/datail/${data.id}`);
+            navigate(`/post/${data.id}`);
           }}
         >
           <div>
+            <p>이미지~</p>
+            <p>{data?.image}</p>
+          </div>
+          <div>
             <p>제목</p>
-            <p>{data.title}</p>
+            <p>{data?.title}</p>
           </div>
           <div>
             <p>내용</p>
-            <p>{data.content}</p>
+            <p>{data?.content}</p>
           </div>
           <div>
             <p>가격</p>
-            <p>{data.price}</p>
+            <p>{data?.price}</p>
           </div>
           <div>
             <p>지역</p>
-            <p>{data.location}</p>
+            <p>{data?.location}</p>
           </div>
-          <button>
-            onClick=
-            {() => {
-              navigate("/post/add");
-            }}
-          </button>
+          <div>
+            <p>작성시간</p>
+            <p>{data?.createdAt}</p>
+          </div>
         </div>
       ))}
     </>
