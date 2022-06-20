@@ -23,6 +23,7 @@ const deletePost = (payload) => {
 };
 
 const updatePost = (payload) => {
+  console.log(payload);
   return { type: UPDATE_POST, payload };
 };
 
@@ -38,10 +39,10 @@ const initialState = {
 //청크
 export const __addPost = (payload) => async (dispatch) => {
   // console.log(payload);
-  const myToken = getCookie("token");
+  const myToken = getCookie("authorization");
   console.log(myToken);
   try {
-    const response = await axios.post(
+    const res = await axios.post(
       "http://3.39.25.179/api/posting",
       {
         title: payload.title,
@@ -56,9 +57,9 @@ export const __addPost = (payload) => async (dispatch) => {
         },
       }
     );
-    // console.log(response);
     window.alert("작성완료!");
-    dispatch(addPost(response.data));
+    console.log(res);
+    dispatch(addPost(res.data.body));
   } catch (error) {
     window.alert("error!");
   }
@@ -66,24 +67,20 @@ export const __addPost = (payload) => async (dispatch) => {
 
 export const __loadPost = (payload) => async (dispatch) => {
   // console.log(payload);
-  const myToken = getCookie("token");
+  // const myToken = getCookie("authorization");
   // console.log(myToken);
   try {
-    const response = await axios.get("http://3.39.25.179/api/posts", {
-      headers: {
-        Authorization: `Bearer ${myToken}`,
-      },
-    });
-    console.log(response);
-    dispatch(loadPost(response.data));
+    const res = await axios.get("http://3.39.25.179/api/posts", {});
+    console.log(res);
+    dispatch(loadPost(res.data));
   } catch (error) {
     window.alert("error!");
   }
 };
 
 export const __deletePost = (payload) => async (dispatch) => {
-  // console.log(payload);
-  const myToken = getCookie("token");
+  console.log(payload);
+  const myToken = getCookie("authorization");
   // console.log(myToken);
   try {
     await axios.delete(`http://3.39.25.179/api/post/${payload.id}`, {
@@ -98,19 +95,19 @@ export const __deletePost = (payload) => async (dispatch) => {
   }
 };
 
-export const __updatePost = (payload) => async (dispatch) => {
+export const __updatePost = (payload, id) => async (dispatch) => {
   // console.log(payload);
-  const myToken = getCookie("token");
+  const myToken = getCookie("authorization");
   // console.log(myToken);
   try {
-    await axios.put(
+    const res = await axios.put(
       `http://3.39.25.179/api/post/${payload.id}`,
       {
         title: payload.title,
         content: payload.content,
         price: payload.price,
         location: payload.location,
-        imageUrls: [...payload.imageUrls],
+        imageUrls: [payload.imageUrls],
       },
       {
         headers: {
@@ -118,7 +115,8 @@ export const __updatePost = (payload) => async (dispatch) => {
         },
       }
     );
-    dispatch(updatePost(payload.id));
+    console.log(res);
+    dispatch(updatePost(res.data.body));
     window.alert("수정 완료!");
   } catch (error) {
     console.log(error);
@@ -127,18 +125,15 @@ export const __updatePost = (payload) => async (dispatch) => {
 
 export const __loadDetail = (payload) => async (dispatch) => {
   // console.log(payload);
-  const myToken = getCookie("token");
+  const myToken = getCookie("authorization");
   try {
-    const response = await axios.get(
-      `http://3.39.25.179/api/post/${payload.id}`,
-      {
-        headers: {
-          Authorization: myToken,
-        },
-      }
-    );
-    console.log(response);
-    dispatch(loadDetail(response.data));
+    const res = await axios.get(`http://3.39.25.179/api/post/${payload.id}`, {
+      headers: {
+        Authorization: myToken,
+      },
+    });
+    console.log(res);
+    dispatch(loadDetail(res.data));
   } catch (error) {
     console.log(error);
   }
@@ -148,10 +143,11 @@ export const __loadDetail = (payload) => async (dispatch) => {
 const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
+      console.log(action.payload);
       return { ...state, data: [...state.data, action.payload] };
 
     case LOAD_POST:
-      return { ...state, data: action.payload };
+      return { data: action.payload };
 
     case DELETE_POST:
       const newDeletedata = state.data.filter((value) => {
@@ -160,7 +156,13 @@ const postReducer = (state = initialState, action) => {
       return { ...state, data: [...newDeletedata] };
 
     case UPDATE_POST:
-      return { ...state, data: action.payload };
+      const newChangeData = state.data.map((value) => {
+        console.log(state.data)
+        console.log(value.id)
+        console.log(action.payload.id)
+        return value.id === Number(action.payload.id) ? action.payload : value;
+      });
+      return { ...state, data: newChangeData };
 
     case LOAD_DETAIL:
       return { ...state, data: action.payload };

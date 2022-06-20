@@ -10,13 +10,13 @@ import Header from "../components/Header";
 //드롭다운
 import DrupDown from "../components/DrupDown";
 
-const Signup = (props,{Children}) => {
+const Signup = (props, { Children }) => {
   const navigate = useNavigate();
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [Password2, setPassword2] = useState("");
   const [Nickname, setNickname] = useState("");
-  const [Location,setLocation] = useState("")
+  const [Location, setLocation] = useState("");
   const [fileImage, setFileImage] = React.useState("");
   const fileInputRef = React.useRef();
   const password = React.useRef();
@@ -95,78 +95,90 @@ const Signup = (props,{Children}) => {
     <>
       <Header />
       <FatherBox>
-      <Box>
-      <form onSubmit={onSubmitUserHandler} style={{marginTop:"30px"}}>
-        아이디 :
-        <input
-          type="text"
-          placeholder="아이디를 입력하세요"
-          value={Username}
-          onChange={(event) => {
-            setUsername(event.target.value);
-          }}
-        />
-        <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요.</h6>
-        <br />
-        비밀번호 :
-        <input
-          type="password"
-          placeholder="비밀번호를 입력하세요"
-          value={Password}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          ref={password}
-        />
-        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
-        <br />
-        비밀번호 재확인 :
-        <input
-          type="password"
-          placeholder="비밀번호를 재입력하세요."
-          value={Password2}
-          onChange={(event) => {
-            setPassword2(event.target.value);
-          }}
-          ref={password2}
-        />
-        <p ref={check} />
-        <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
-        <br />
-        닉네임 :
-        <input
-          type="text"
-          placeholder="닉네임을 입력해 주세요."
-          value={Nickname}
-          onChange={(event) => {
-            setNickname(event.target.value);
-          }}
-        />
-        <br />
-        <>
-        <DrupDown setLocation={setLocation} Location={Location}></DrupDown>
-        </>
-        프로필 사진
-        {fileImage && (
-          <img
-            alt="sample"
-            src={fileImage}
-            style={{ margin: "auto", maxWidth: "300px", maxHeight: "250px" }}
-          />)}
-          <Input
-            name="imgUpload"
-            type="file"
-            accept="image/*"
-            ref={fileInputRef}
-            onChange={saveFileImage}
-          />
-          <div style={{ fontSize: "10px", color: "tomato" }}></div>
-          <button onClick={()=>{
-            window.alert("완료되었습니다.")
-          }}>가입하기</button>
-        </form>
+        <Box>
+          <form onSubmit={onSubmitUserHandler} style={{ marginTop: "30px" }}>
+            아이디 :
+            <input
+              type="text"
+              placeholder="아이디를 입력하세요"
+              value={Username}
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
+            />
+            <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요</h6>
+            <br />
+            비밀번호 :
+            <input
+              type="password"
+              placeholder="비밀번호를 입력하세요"
+              value={Password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              ref={password}
+            />
+            <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
+            <br />
+            비밀번호 재확인 :
+            <input
+              type="password"
+              placeholder="비밀번호를 재입력하세요."
+              value={Password2}
+              onChange={(event) => {
+                setPassword2(event.target.value);
+              }}
+              ref={password2}
+            />
+            <p ref={check} />
+            <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어져야해요.</h6>
+            <br />
+            닉네임 :
+            <input
+              type="text"
+              placeholder="닉네임을 입력해 주세요."
+              value={Nickname}
+              onChange={(event) => {
+                setNickname(event.target.value);
+              }}
+            />
+            <br />
+            <>
+              <DrupDown
+                setLocation={setLocation}
+                Location={Location}
+              ></DrupDown>
+            </>
+            프로필 사진
+            {fileImage && (
+              <img
+                alt="sample"
+                src={fileImage}
+                style={{
+                  margin: "auto",
+                  maxWidth: "300px",
+                  maxHeight: "250px",
+                }}
+              />
+            )}
+            <Input
+              name="imgUpload"
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={saveFileImage}
+            />
+            <div style={{ fontSize: "10px", color: "tomato" }}></div>
+            <button
+              onClick={() => {
+                window.alert("완료되었습니다.");
+              }}
+            >
+              가입하기
+            </button>
+          </form>
         </Box>
-        </FatherBox>
+      </FatherBox>
     </>
   );
 };
@@ -177,11 +189,10 @@ const FatherBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-`
+`;
 
 const Box = styled.div`
-  padding-top: 300px ;
+  padding-top: 300px;
   margin: 0px 163.5px;
 `;
 

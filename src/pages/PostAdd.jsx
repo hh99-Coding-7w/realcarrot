@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { __addPost } from "../redux/modules/post";
+import { __addPost, __loadPost } from "../redux/modules/post";
 import { useRef } from "react";
 
 const PostAdd = () => {
@@ -11,8 +11,11 @@ const PostAdd = () => {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   const priceRef = useRef(null);
-  const locationRef = useRef(null);
   const imageUrlsRef = useRef(null);
+
+  useEffect(() => {
+    dispatch(__loadPost());
+  }, [dispatch]);
 
   const addPost = () => {
     dispatch(
@@ -25,6 +28,7 @@ const PostAdd = () => {
     );
     navigate("/main");
   };
+
   return (
     <>
       <Header />
