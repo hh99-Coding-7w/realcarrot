@@ -106,7 +106,7 @@ const Signup = (props,{Children}) => {
             setUsername(event.target.value);
           }}
         />
-        <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요</h6>
+        <h6>아이디는 4자 이상 영문과 숫자로만 이루어져야해요.</h6>
         <br />
         비밀번호 :
         <input
@@ -177,6 +177,7 @@ const FatherBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
 `
 
 const Box = styled.div`
