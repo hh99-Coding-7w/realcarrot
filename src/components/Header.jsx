@@ -5,12 +5,11 @@ import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
 import PostSearch from "./Search";
 
-
 const Header = () => {
   const cookie = getCookie("token");
   const [is_cookie, setCookie] = React.useState(false);
-  
-  console.log(cookie)
+
+  console.log(cookie);
 
   React.useEffect(() => {
     if (cookie !== undefined) {
@@ -71,27 +70,27 @@ const Header = () => {
             </svg> 
         </Link>
         <Link to="/Main">
-              <Main1>
-                <h3>중고거래</h3>
-              </Main1>
+          <Main1>
+            <h3>중고거래</h3>
+          </Main1>
         </Link>
         </Svg>
         <Menu>
         {is_cookie ? (
           <>
-          <PostSearch></PostSearch>
-          <Link to="/post/add">
-          <Write>
-          <h3>글작성</h3>
-          </Write>
-        </Link>
-          <Link to="/">
-            <h3 onClick={onLogout}>로그아웃</h3>
-          </Link>
+            <PostSearch></PostSearch>
+            <Link to="/post/add">
+              <Write>
+                <h3>글작성</h3>
+              </Write>
+            </Link>
+            <Link to="/">
+              <h3 onClick={onLogout}>로그아웃</h3>
+            </Link>
           </>
         ) : (
           <>
-          <PostSearch></PostSearch>
+            <PostSearch></PostSearch>
             <Link to="/login">
               <Login>
                 <h3>로그인</h3>
@@ -120,6 +119,7 @@ const Svg = styled.span`
   padding-left: 30%;
 `;
 
+
 const Wrap = styled.span`
   display: flex;
   flex-direction: row;
@@ -144,7 +144,6 @@ width: 70%;
 padding-right: 200px;
   
 `   
-
 const Login = styled.button`
   background-color: #fff;
   opacity: 0.7;
@@ -203,7 +202,9 @@ const Main1 = styled.button`
   &:hover {
     background-color: #f2f3f6;
   }
-  /* margin-top: 16px; */
-`
+
+  margin-top: 16px;
+`;
+
 
 export default Header;
