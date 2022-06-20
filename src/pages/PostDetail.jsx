@@ -11,16 +11,16 @@ const PostDetail = () => {
   const params = useParams();
   const data = useSelector((state) => state.postReducer.data);
 
-  const loginUser = getCookie("nickname");
+  const loginUser = getCookie("username");
 
   console.log(loginUser);
 
-  console.log(params.id);
+  // console.log(params.id);
 
   useEffect(() => {
     dispatch(
       __loadDetail({
-        token: getCookie("token"),
+        // Authorization: getCookie("authorization"),
         id: params.id,
       })
     );
@@ -29,7 +29,7 @@ const PostDetail = () => {
   const removePost = () => {
     dispatch(
       __deletePost({
-        token: getCookie("token"),
+        // Authorization: getCookie("authorization"),
         id: params.id,
       })
     );
@@ -39,6 +39,18 @@ const PostDetail = () => {
   return (
     <>
       <Header />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div>
         <div>
           <p>이미지~</p>
@@ -62,9 +74,9 @@ const PostDetail = () => {
         </div>
         <div>
           <p>작성시간</p>
-          <p>{data?.createdAt}</p>
+          <p>{data?.calculatedTime}</p>
         </div>
-        {loginUser === data?.nickname && (
+        {loginUser === data.username && (
           <>
             <Link to={`/post/update/${data.id}`}>
               <button>수정</button>

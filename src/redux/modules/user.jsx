@@ -49,7 +49,7 @@ const loadToken = createAction(LOAD_TOKEN, (token) => ({token}));
 // 토큰로드 액션
 const loadTokenFB = () => {
     return function (dispatch) {
-      if (getCookie("Authorization")) {
+      if (getCookie("authorization")) {
         dispatch(loadToken());
       }
     };
@@ -73,8 +73,8 @@ export const loginDB = (username, password) => {
   
           );
           setCookie(
-            "Authorization",
-            response.headers.authorization.split(" ")[1]
+            "authorization",
+            response.headers.Authorization.split(" ")[1]
           );
           setCookie("username", username);
           setCookie("profileImage", response.headers.profileImage)
@@ -148,7 +148,7 @@ export default handleActions(
         produce(state,(draft)=>{
             deleteCookie("is_login");
             localStorage.removeItem("nickname");
-        localStorage.removeItem("token");
+        localStorage.removeItem("authorization");
         draft.user = null;
         draft.is_login = false;
         }),

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import PostSearch from "./Search";
 
 const Header = () => {
-  const cookie = getCookie("token");
+  const cookie = getCookie("authorization");
   const [is_cookie, setCookie] = React.useState(false);
 
   console.log(cookie);
@@ -18,7 +18,7 @@ const Header = () => {
   }, []);
 
   const onLogout = (e) => {
-    deleteCookie("token");
+    deleteCookie("authorization");
     setCookie(false);
   };
 

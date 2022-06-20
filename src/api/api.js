@@ -1,22 +1,27 @@
 import axios from "axios";
-import { getCookie } from "../shared/Cookie";
+import {
+  getCookie
+} from "../shared/Cookie";
 // Axios Instance를 생성:: 인스턴스를 이용하면 코드 중복을 최소화 할 수 있다.
 const api = axios.create({
   baseURL: "http://3.39.25.179",
 
 });
+
 //1. ?? 아래 이것만 있을 때 왜 안 되는지 이유 찾아내기
 // headers: {
-//   authorization: `${getCookie("token")}`,
+//   authorization: `${getCookie("authorization")}`
 // },
-//
+
+
+
 
 //1. ?? 아래 왜 꼭 interceptors가 필요한지.
 //2. ??!! 일단
 api.interceptors.request.use(
   (config) => {
-    const token = getCookie("token");
-    config.headers.Authorization = token;
+    const authorization = getCookie("authorization");
+    config.headers.Authorization = authorization;
     return config;
   },
   (error) => {
