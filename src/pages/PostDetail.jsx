@@ -9,9 +9,11 @@ const PostDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const data = useSelector((state) => state.postReducer.data);
+  const data = useSelector((state) => state.postReducer.detailData);
 
   const loginUser = getCookie("username");
+
+  console.log(data)
 
   // console.log(loginUser);
 
@@ -76,7 +78,7 @@ const PostDetail = () => {
           <p>작성시간</p>
           <p>{data?.calculatedTime}</p>
         </div>
-        {loginUser === data.username && (
+        {loginUser === data?.username && (
           <>
             <Link to={`/post/update/${data.id}`}>
               <button>수정</button>

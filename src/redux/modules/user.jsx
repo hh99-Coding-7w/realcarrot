@@ -89,7 +89,7 @@ export const __searchPost = createAsyncThunk(
   "post/SEARCH_POST",
   async (payload) => {
     try {
-      // console.log(payload)
+      console.log(payload);
       const response = await axios.get(
         `http://3.39.25.179/api/posts/search?keyword${payload}`
       );

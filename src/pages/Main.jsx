@@ -5,12 +5,13 @@ import { __loadPost } from "../redux/modules/post";
 
 import Header from "../components/Header";
 import styled from "styled-components";
+
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.postReducer.data);
-  console.log(datas)
-  // console.log(Token)
+  console.log(datas);
+
   useEffect(() => {
     dispatch(__loadPost());
   }, [dispatch]);
@@ -81,8 +82,7 @@ const Wrap = styled.div`
 `;
 
 const Post = styled.div`
-  border: solid 1px black
+  border: solid 1px black;
 `;
-
 
 export default Main;

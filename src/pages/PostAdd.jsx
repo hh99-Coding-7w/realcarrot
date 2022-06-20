@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { __addPost } from "../redux/modules/post";
+import { __addPost, __loadPost } from "../redux/modules/post";
 // import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 // import { storage } from "../shared/firebase";
 
@@ -14,9 +14,9 @@ const PostAdd = () => {
   const priceRef = useRef(null);
   const imageUrlsRef = useRef(null);
 
-  // useEffect(() => {
-  //   dispatch(__loadPost());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(__loadPost());
+  }, [dispatch]);
 
   const addPost = (e) => {
     dispatch(
@@ -56,7 +56,6 @@ const PostAdd = () => {
   //     };
   //   });
   // };
-
 
   return (
     <>
