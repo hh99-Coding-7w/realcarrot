@@ -4,6 +4,7 @@ import React, { useState } from "react";
 // redux
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 
 const PostSearch = () => {
@@ -12,7 +13,7 @@ const PostSearch = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <Search1>
           <>
             {" "}
             {/* <button>뒤로가기</button> */}
@@ -47,8 +48,12 @@ const PostSearch = () => {
                 클릭
             </button>
           </>
-        </div>
+        </Search1>
       );
     };
 
+
+    const Search1 = styled.div`
+      margin-top: 12px;
+    `
     export default PostSearch;
