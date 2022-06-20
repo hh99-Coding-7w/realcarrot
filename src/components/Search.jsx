@@ -6,54 +6,59 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-
 const PostSearch = () => {
-    const [search, setSearch] = useState("");
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    return (
-        <Search1>
-          <>
-            {" "}
-            {/* <button>뒤로가기</button> */}
-            <input
-              value={search}
-              placeholder="검색 키워드를 입력해주세요"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
-              onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  console.log(search);
-                  dispatch(__searchPost(search));
-                  setSearch("");
-                }
-              }}
-            />
-            <img src="" alt="" />
-            <button
-              onClick={(e) => {
-                if (search === "") {
-                  window.alert("검색 키워드를 입력해주세요!");
-                  setSearch("");
-                } else {
-                  e.preventDefault();
-                  dispatch(__searchPost(search));
-                  setSearch("");
-                }
-              }}
-            >
-                클릭
-            </button>
-          </>
-        </Search1>
-      );
-    };
+  return (
+    <>
+      {/* <button>뒤로가기</button> */}
+      <form onsubmit="return false">
+        <Search1
+          value={search}
+          placeholder="물품이나 동네를 검색해보세요"
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onKeyPress={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              dispatch(__searchPost(search));
+              setSearch("");
+            }
+          }}
+        />
+      </form>
+    </>
+  );
+};
 
+const Search1 = styled.input`
+  line-height: 1.4;
+  font-size: 20px;
+  background-color: #f2f3f6;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 16px 23px;
+  border: none;
+  border-radius: 15px;
+  width: 360px;
+  color: #212124;
+`;
 
-    const Search1 = styled.div`
-      margin-top: 12px;
-    `
-    export default PostSearch;
+const Button = styled.button`
+  background-color: #fff;
+  opacity: 0.7;
+  line-height: 1.3;
+  display: block;
+  white-space: nowrap;
+  color: #212124;
+  padding: 10px 20px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #f2f3f6;
+  }
+`;
+
+export default PostSearch;

@@ -34,11 +34,12 @@ const loadDetail = (payload) => {
 //initial state
 const initialState = {
   data: [],
+  detailData: {},
 };
 
 //청크
 export const __addPost = (payload) => async (dispatch) => {
-  // console.log(payload);
+  console.log(payload);
   const myToken = getCookie("authorization");
   // console.log(myToken);
   try {
@@ -48,7 +49,6 @@ export const __addPost = (payload) => async (dispatch) => {
         title: payload.title,
         content: payload.content,
         price: payload.price,
-        location: payload.location,
         imageUrls: [...payload.imageUrls],
       },
       {
@@ -115,7 +115,7 @@ export const __updatePost = (payload, id) => async (dispatch) => {
         },
       }
     );
-    // console.log(res);
+    console.log(res);
     dispatch(updatePost(res.data.body));
     window.alert("수정 완료!");
   } catch (error) {
@@ -160,7 +160,7 @@ const postReducer = (state = initialState, action) => {
 
     case UPDATE_POST:
       console.log(state.data);
-      console.log(action.payload)
+      console.log(action.payload);
       const newChangeData = state.data.map((value) => {
         return value.id === action.payload.id ? action.payload : value;
       });
@@ -168,7 +168,8 @@ const postReducer = (state = initialState, action) => {
       return { ...state, data: newChangeData };
 
     case LOAD_DETAIL:
-      return { ...state, data: action.payload };
+      console.log(action.payload);
+      return { ...state, detailData: action.payload };
 
     default:
       return state;
