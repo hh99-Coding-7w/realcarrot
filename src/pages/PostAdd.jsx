@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { __addPost, __loadPost } from "../redux/modules/post";
-import { useRef } from "react";
+import { __addPost } from "../redux/modules/post";
+// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+// import { storage } from "../shared/firebase";
 
 const PostAdd = () => {
   const navigate = useNavigate();
@@ -13,11 +14,11 @@ const PostAdd = () => {
   const priceRef = useRef(null);
   const imageUrlsRef = useRef(null);
 
-  useEffect(() => {
-    dispatch(__loadPost());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(__loadPost());
+  // }, [dispatch]);
 
-  const addPost = () => {
+  const addPost = (e) => {
     dispatch(
       __addPost({
         title: titleRef.current.value,
@@ -28,6 +29,34 @@ const PostAdd = () => {
     );
     navigate("/main");
   };
+
+  // const [fileImage, setFileImage] = useState();
+
+  // const uploadFB = async (e) => {
+  //   const upload_file = await uploadBytes(
+  //     ref(storage, `postImage/${e.target.files[0].name}`),
+  //     e.target.file[0]
+  //   )
+  //   const file_url = await getDownloadURL(upload_file.ref)
+  //   imageUrlsRef.current = { url : file_url}
+  // }
+
+  // 미리보기
+  // const encodeFileToBase64 = (fileBlob) => {
+  //   const reader = new FileReader();
+
+  //   reader.readAsDataURL(fileBlob);
+
+  //   console.log(reader);
+
+  //   return new Promise((resolve) => {
+  //     reader.onload = () => {
+  //       setFileImage(reader.result);
+  //       resolve();
+  //     };
+  //   });
+  // };
+
 
   return (
     <>

@@ -20,10 +20,7 @@ const PostUpdate = () => {
   const priceRef = useRef();
   const imageUrlsRef = useRef();
 
-  useEffect(() => {
-    dispatch(__updatePost());
-  }, [dispatch]);
-
+  
   const reloadPost = () => {
     dispatch(
       __updatePost({

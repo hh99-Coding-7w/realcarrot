@@ -9,7 +9,7 @@ const Header = () => {
   const cookie = getCookie("authorization");
   const [is_cookie, setCookie] = React.useState(false);
 
-  console.log(cookie);
+  // console.log(cookie);
 
   React.useEffect(() => {
     if (cookie !== undefined) {
@@ -26,12 +26,12 @@ const Header = () => {
     <>
       <Wrap>
         <Svg>
-        <Link to="/">
+          <Link to="/">
             <svg
               width="86"
               height="26"
               viewBox="0 0 86 26"
-              style= {{marginTop:"-3px"}}
+              style={{ marginTop: "-3px" }}
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
@@ -67,42 +67,42 @@ const Header = () => {
                 d="M78.5137 8.94842H79.132V6.55666C79.132 5.85563 79.709 5.40202 80.5333 5.40202C81.3576 5.40202 81.9346 5.85563 81.9346 6.55666V13.7732C81.9346 14.4742 81.3988 14.9278 80.5333 14.9278C79.6678 14.9278 79.132 14.433 79.132 13.7319V11.6288H78.5137C78.184 11.6288 77.8543 11.4639 77.6482 11.1752C76.7827 13.0721 75.299 14.5979 73.197 15.5464C72.5376 15.835 71.7957 15.6701 71.4248 15.0103C71.0539 14.3505 71.3012 13.567 71.8782 13.2783C72.8261 12.8659 73.6092 12.2886 74.2274 11.5876H72.7025C72.1255 11.5876 71.5897 11.2577 71.5897 10.4742C71.5897 9.77316 72.0842 9.36079 72.7025 9.36079H75.3814C75.4639 9.07213 75.5463 8.78347 75.5463 8.49481C75.5875 8.24739 75.4639 8.08244 75.2166 8.08244H72.7437C72.043 8.08244 71.5485 7.67007 71.5485 6.88656C71.5485 6.10306 72.043 5.64945 72.7437 5.64945H75.7111C77.6894 5.64945 78.5962 6.5979 78.3077 8.74223C78.3077 8.82471 78.3077 8.90718 78.2665 8.98965C78.3901 8.94842 78.4313 8.94842 78.5137 8.94842ZM84.0777 21.1134C82.1819 20.701 79.915 19.6701 78.4313 18.4742C77.0712 19.835 75.2578 20.8247 73.3207 21.1958C72.6612 21.3196 71.9194 21.0309 71.6721 20.2062C71.466 19.4226 71.837 18.7629 72.5376 18.5567C74.6396 18.0206 76.3706 16.7835 77.2361 15.1752C77.5246 14.6804 78.2252 14.3505 79.0907 14.5979C79.9563 14.8866 80.3272 15.7113 80.0387 16.2886V16.3299C81.2751 17.3196 83.0474 18.1031 84.8196 18.5154C85.479 18.6804 85.8912 19.3402 85.6851 20.1237C85.479 20.9484 84.7372 21.2783 84.0777 21.1134ZM82.6352 14.2268V6.47419C82.6352 5.77316 83.2122 5.31955 84.0777 5.31955C84.9432 5.31955 85.5202 5.77316 85.5202 6.47419V14.2268C85.5202 14.9278 84.9432 15.3814 84.0777 15.3814C83.2122 15.3814 82.6352 14.9278 82.6352 14.2268Z"
                 fill="#FF8A3D"
               ></path>
-            </svg> 
-        </Link>
-        <Link to="/Main">
-          <Main1>
-            <h3>중고거래</h3>
-          </Main1>
-        </Link>
+            </svg>
+          </Link>
+          <Link to="/Main">
+            <Main1>
+              <h3>중고거래</h3>
+            </Main1>
+          </Link>
         </Svg>
         <Menu>
-        {is_cookie ? (
-          <>
-            <PostSearch></PostSearch>
-            <Link to="/post/add">
-              <Write>
-                <h3>글작성</h3>
-              </Write>
-            </Link>
-            <Link to="/">
-              <h3 onClick={onLogout}>로그아웃</h3>
-            </Link>
-          </>
-        ) : (
-          <>
-            <PostSearch></PostSearch>
-            <Link to="/login">
-              <Login>
-                <h3>로그인</h3>
-              </Login>
-            </Link>
-            <Link to="/signup">
-              <SignUp>
-                <h3>회원가입</h3>
-              </SignUp>
-            </Link>
-          </>
-        )}
+          {is_cookie ? (
+            <>
+              <PostSearch></PostSearch>
+              <Link to="/post/add">
+                <Write>
+                  <h3>글작성</h3>
+                </Write>
+              </Link>
+              <Link to="/">
+                <h3 onClick={onLogout}>로그아웃</h3>
+              </Link>
+            </>
+          ) : (
+            <>
+              <PostSearch></PostSearch>
+              <Link to="/login">
+                <Login>
+                  <h3>로그인</h3>
+                </Login>
+              </Link>
+              <Link to="/signup">
+                <SignUp>
+                  <h3>회원가입</h3>
+                </SignUp>
+              </Link>
+            </>
+          )}
         </Menu>
       </Wrap>
     </>
@@ -118,7 +118,6 @@ const Svg = styled.span`
   justify-content: center;
   padding-left: 30%;
 `;
-
 
 const Wrap = styled.span`
   display: flex;
@@ -138,12 +137,11 @@ const Wrap = styled.span`
 `;
 
 const Menu = styled.span`
-display: flex;
-flex-direction: row;
-width: 70%;
-padding-right: 200px;
-  
-`   
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  padding-right: 200px;
+`;
 const Login = styled.button`
   background-color: #fff;
   opacity: 0.7;
@@ -205,6 +203,5 @@ const Main1 = styled.button`
 
   margin-top: 16px;
 `;
-
 
 export default Header;

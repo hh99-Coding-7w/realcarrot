@@ -13,7 +13,7 @@ const PostDetail = () => {
 
   const loginUser = getCookie("username");
 
-  console.log(loginUser);
+  // console.log(loginUser);
 
   // console.log(params.id);
 
@@ -33,7 +33,7 @@ const PostDetail = () => {
         id: params.id,
       })
     );
-    navigate("/main");
+    navigate(-1);
   };
 
   return (

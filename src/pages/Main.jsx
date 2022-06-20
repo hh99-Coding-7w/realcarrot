@@ -9,7 +9,7 @@ const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.postReducer.data);
-
+  console.log(datas)
   // console.log(Token)
   useEffect(() => {
     dispatch(__loadPost());
@@ -23,13 +23,12 @@ const Main = () => {
         <Wrap>
           {datas?.map((data) => (
             <Post
-              key={data?.id}
+              key={data.id}
               onClick={() => {
                 navigate(`/post/${data.id}`);
               }}
             >
               <div>
-                <p>이미지~</p>
                 <p>{data?.image}</p>
               </div>
               <div>
