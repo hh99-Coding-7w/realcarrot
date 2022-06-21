@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { __addPost, __loadPost } from "../redux/modules/post";
@@ -25,13 +24,25 @@ const PostAdd = () => {
         title: titleRef.current.value,
         content: contentRef.current.value,
         price: priceRef.current.value,
-        imageUrls: [imageUrlsRef.current.value],
+        imageUrls: imageUrlsRef.current.value,
       })
     );
     navigate("/main");
   };
 
   const [fileImage, setFileImage] = useState();
+
+  const uploadFB = async (e) => {
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+    const uploaded_file = await uploadBytes(
+      ref(storage, `postimages/${e.target.files[0].name}`),
+      e.target.files[0]
+    );
+    console.log(e.target.files[0].name)
+    const file_url = await getDownloadURL(uploaded_file.ref);
+    imageUrlsRef.current = { url: file_url };
+    console.log(file_url)
+  };
 
   // 미리보기
   const encodeFileToBase64 = (fileBlob) => {
@@ -64,9 +75,9 @@ const PostAdd = () => {
       <br />
       <br />
       <br />
-      {/* <div>
+      <div>
         <p>이미지</p>
-        {fileImage && <img src={fileImage} alt="preview-img" muli/>}
+        {fileImage && <img src={fileImage} alt="preview-img" />}
         <input
           ref={imageUrlsRef}
           type="file"
@@ -74,6 +85,7 @@ const PostAdd = () => {
           accept={"postImages/*"}
           onChange={(e) => {
             encodeFileToBase64(e.target.files[0]);
+            uploadFB(e);
           }}
           placeholder="이미지을 입력해주세요"
         />
@@ -89,21 +101,9 @@ const PostAdd = () => {
       <div>
         <p>가격</p>
         <input ref={priceRef} type="number" placeholder="가격을 입력해주세요" />
-      </div> */}
+      </div>
 
-      <form onSubmit={addPost}>
-        <p>이미지</p>
-        <input type="file" ref={imageUrlsRef} multiple />
-        <p>제목</p>
-        <input type="text" ref={titleRef} />
-        <p>내용</p>
-        <input type="text" ref={contentRef} />
-        <p>가격</p>
-        <input type="number" ref={priceRef} />
-        <br />
-        <input type="submit" value="제출" />
-      </form>
-      <Footer />
+      <button onClick={addPost}>작성완료</button>
     </>
   );
 };

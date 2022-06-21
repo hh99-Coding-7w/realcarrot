@@ -1,5 +1,4 @@
 import axios from "axios";
-import { act } from "react-dom/test-utils";
 import { getCookie } from "../../shared/Cookie";
 
 //액션타입
@@ -31,6 +30,7 @@ const loadDetail = (payload) => {
   return { type: LOAD_DETAIL, payload };
 };
 
+
 //initial state
 const initialState = {
   data: [],
@@ -49,7 +49,7 @@ export const __addPost = (payload) => async (dispatch) => {
         title: payload.title,
         content: payload.content,
         price: payload.price,
-        imageUrls: [...payload.imageUrls],
+        imageUrls: payload.imageUrls,
       },
       {
         headers: {
@@ -71,7 +71,7 @@ export const __loadPost = (payload) => async (dispatch) => {
   // console.log(myToken);
   try {
     const res = await axios.get("http://3.39.25.179/api/posts");
-    console.log(res.data);
+    // console.log(res.data);
     dispatch(loadPost(res.data));
   } catch (error) {
     window.alert("로드에러!");
@@ -139,6 +139,7 @@ export const __loadDetail = (payload) => async (dispatch) => {
   }
 };
 
+
 //리듀서
 const postReducer = (state = initialState, action) => {
   // console.log(state)
@@ -170,6 +171,7 @@ const postReducer = (state = initialState, action) => {
     case LOAD_DETAIL:
       console.log(action.payload);
       return { ...state, detailData: action.payload };
+
 
     default:
       return state;
