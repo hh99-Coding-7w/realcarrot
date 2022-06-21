@@ -4,18 +4,16 @@ import { __searchPost } from "../redux/modules/search";
 import React, { useState } from "react";
 // redux
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PostSearch = (payload) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   return (
     <>
       {/* <button>뒤로가기</button> */}
-      <form onsubmit="return false">
+      <form onSubmit="return false">
         <Search1
           value={search}
           placeholder="물품이나 동네를 검색해보세요"
@@ -49,18 +47,5 @@ const Search1 = styled.input`
   color: #212124;
 `;
 
-const Button = styled.button`
-  background-color: #fff;
-  opacity: 0.7;
-  line-height: 1.3;
-  display: block;
-  white-space: nowrap;
-  color: #212124;
-  padding: 10px 20px;
-  border-radius: 10px;
-  &:hover {
-    background-color: #f2f3f6;
-  }
-`;
 
 export default PostSearch;

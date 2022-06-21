@@ -3,14 +3,31 @@ import styled from "styled-components";
 import { getCookie } from "../shared/Cookie";
 import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
+import LoginModal from "./LoginModal";
+import SignupModal from "./SignupModal";
 import PostSearch from "./HeaderSearch";
 
 const Header = () => {
+
   const cookie = getCookie("authorization");
   const [is_cookie, setCookie] = React.useState(false);
 
-  // console.log(cookie);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen2,setModalOpen2] = React.useState(false);
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const openModal2 = () => {
+    setModalOpen2(true);
+  };
+  const closeModal2 = () => {
+    setModalOpen2(false);
+  };
   React.useEffect(() => {
     if (cookie !== undefined) {
       return setCookie(true);
@@ -93,17 +110,19 @@ const Header = () => {
               </>
             ) : (
               <>
-                <PostSearch></PostSearch>
-                <Link to="/login">
-                  <Login>
+                <PostSearch></PostSearch>             
+                  <LoginButton onClick={()=>{setModalOpen(true)}}>
                     <h3>로그인</h3>
-                  </Login>
-                </Link>
-                <Link to="/signup">
-                  <SignUp>
+                  </LoginButton>
+                  {
+                    modalOpen == true ? <LoginModal open={openModal} close={closeModal} header="로그인"/> : null // 기계역활
+                  }
+                  <SignUpButton onClick={()=>{setModalOpen2(true)}}>
                     <h3>회원가입</h3>
-                  </SignUp>
-                </Link>
+                  </SignUpButton>
+                  {
+                    modalOpen2 == true ? <SignupModal open={openModal2} close={closeModal2} header="회원가입"/> : null // 기계역활
+                  }
               </>
             )}
           </Menu>
@@ -142,7 +161,7 @@ const Menu = styled.div`
   align-items: center;
 `;
 
-const Login = styled.button`
+const LoginButton = styled.button`
   background-color: #fff;
   opacity: 0.7;
   line-height: 1.3;
@@ -170,7 +189,7 @@ const LogOut = styled.button`
   }
 `;
 
-const SignUp = styled.button`
+const SignUpButton = styled.button`
   background-color: #fff;
   opacity: 0.7;
   line-height: 1.3;
