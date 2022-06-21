@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
 import user from "./user";
-import { postSlice } from "./user";
+// import { postSlice } from "./user";
 import postReducer from "./post";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
   user,
-  postSlice,
+  // postSlice,
   postReducer,
+  searchReducer,
   // image,
 });
 

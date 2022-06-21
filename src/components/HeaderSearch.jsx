@@ -1,11 +1,12 @@
 //모듈
-import { __searchPost } from "../redux/modules/user";
+// import { __searchPost } from "../redux/modules/user";
+import { __searchPost } from "../redux/modules/search";
 import React, { useState } from "react";
 // redux
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-const PostSearch = () => {
+const PostSearch = (payload) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -24,6 +25,7 @@ const PostSearch = () => {
               e.preventDefault();
               dispatch(__searchPost(search));
               setSearch("");
+              navigate(`/post/search/${e.target.value}`);
             }
           }}
         />

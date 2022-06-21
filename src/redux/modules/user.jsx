@@ -85,40 +85,41 @@ export const loginDB = (username, password) => {
 //index.jsx 에 리듀서를 합친다
 //서치포스트 임포트하기 서치 컴포넌트에
 
-export const __searchPost = createAsyncThunk(
-  "post/SEARCH_POST",
-  async (payload) => {
-    try {
-      console.log(payload);
-      const response = await axios.get(
-        `http://3.39.25.179/api/posts/search?keyword${payload}`
-      );
-      return response.data;
-    } catch (error) {
-      const errorMsg = JSON.parse(error.request.response);
-      alert(errorMsg.msg);
-    }
-  }
-);
+// export const __searchPost = createAsyncThunk(
+//   "post/SEARCH_POST",
+//   async (payload) => {
+//     try {
+//       console.log(payload);
+//       const response = await axios.get(
+//         `http://3.39.25.179/api/posts/search?keyword=${payload}`
+//       );
+//       console.log(response)
+//       return response.data;
+//     } catch (error) {
+//       const errorMsg = JSON.parse(error.request.response);
+//       alert(errorMsg.msg);
+//     }
+//   }
+// );
 
-export const postSlice = createSlice({
-  name: "post",
-  extraReducers: (builder) => {
-    builder
-      .addCase(__searchPost.fulfilled, (state, action) => {
-        state.loading = false;
-        // 리스트 전체 저장
-        if (action.payload) {
-          state.list = action.payload;
-        }
-        state.session = true;
-      })
-      .addCase(__searchPost.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error;
-      });
-  },
-});
+// export const postSlice = createSlice({
+//   name: "post",
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(__searchPost.fulfilled, (state, action) => {
+//         state.loading = false;
+//         // 리스트 전체 저장
+//         if (action.payload) {
+//           state.list = action.payload;
+//         }
+//         state.session = true;
+//       })
+//       .addCase(__searchPost.rejected, (state, action) => {
+//         state.loading = false;
+//         state.error = action.error;
+//       });
+//   },
+// });
 
 //리듀서
 export default handleActions(

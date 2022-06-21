@@ -3,10 +3,9 @@ import styled from "styled-components";
 import { getCookie } from "../shared/Cookie";
 import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
-import PostSearch from "./Search";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-
+import PostSearch from "./HeaderSearch";
 
 const Header = () => {
 

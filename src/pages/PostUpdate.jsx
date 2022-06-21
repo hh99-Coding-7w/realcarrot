@@ -9,6 +9,7 @@ import {
 } from "../redux/modules/post";
 import { getCookie } from "../shared/Cookie";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const PostUpdate = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ const PostUpdate = () => {
   const priceRef = useRef();
   const imageUrlsRef = useRef();
 
-  
   const reloadPost = () => {
     dispatch(
       __updatePost({
@@ -70,6 +70,7 @@ const PostUpdate = () => {
         />
       </div>
       <button onClick={reloadPost}>작성완료</button>
+      <Footer />
     </>
   );
 };
