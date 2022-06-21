@@ -1,27 +1,29 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __loadPost } from "../redux/modules/post";
+import { __searchPost } from "../redux/modules/search";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 
-const Main = () => {
+const PostSearch = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const datas = useSelector((state) => state.postReducer.data);
+  const datas = useSelector((state) => state.searchReducer.data);
+  const { payload } = useParams();
+  // console.log(payload);
   console.log(datas);
 
   useEffect(() => {
-    dispatch(__loadPost());
+    dispatch(__searchPost(payload));
   }, [dispatch]);
 
   return (
     <>
       <Header />
       <PostBox>
-        <HeadTitle>중고거래 매물</HeadTitle>
+        <HeadTitle>검색 매물</HeadTitle>
         <Wrap>
           {datas?.map((data) => (
             <Post
@@ -131,4 +133,4 @@ const Time = styled.p`
   line-height: 1.5;
   font-weight: normal;
 `;
-export default Main;
+export default PostSearch;

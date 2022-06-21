@@ -6,6 +6,7 @@ import Main from "./pages/Main";
 import PostAdd from "./pages/PostAdd";
 import PostDetail from "./pages/PostDetail";
 import PostUpdate from "./pages/PostUpdate";
+import PostSearch from "./pages/PostSearch";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login"
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/post/add" element={<PostAdd />} />
         <Route path="/post/update/:id" element={<PostUpdate />} />
+        <Route path="/post/search/:payload" element={<PostSearch />} />
         <Route path="/post/:id" element={<PostDetail />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />

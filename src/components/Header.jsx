@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getCookie } from "../shared/Cookie";
 import { deleteCookie } from "../shared/Cookie";
 import { Link } from "react-router-dom";
-import PostSearch from "./Search";
+import PostSearch from "./HeaderSearch";
 
 const Header = () => {
   const cookie = getCookie("authorization");
