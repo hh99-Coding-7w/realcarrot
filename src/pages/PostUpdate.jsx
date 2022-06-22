@@ -41,9 +41,7 @@ const PostUpdate = () => {
     navigate("/main");
     dispatch(__loadPost());
   };
-
   const [fileImage, setFileImage] = useState();
-
   const uploadFB = async (e) => {
     const uploaded_file = await uploadBytes(
       ref(storage, `postImages/${e.target.files[0].name}`),
@@ -53,14 +51,10 @@ const PostUpdate = () => {
     imageUrlsRef.current = { url: file_url };
     console.log(imageUrlsRef.current.url);
   };
-
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
-
     reader.readAsDataURL(fileBlob);
-
     console.log(reader);
-
     return new Promise((resolve) => {
       reader.onload = () => {
         setFileImage(reader.result);
@@ -68,7 +62,6 @@ const PostUpdate = () => {
       };
     });
   };
-
   return (
     <>
       <Header />
@@ -166,14 +159,12 @@ const PostUpdate = () => {
     </>
   );
 };
-
 const FatherBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 100px 0;
 `;
-
 const MatherBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -183,7 +174,6 @@ const MatherBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
 `;
-
 const Input1 = styled.input`
   line-height: 1.4;
   background-color: #f2f3f6;
@@ -196,7 +186,6 @@ const Input1 = styled.input`
   color: #212124;
   margin-bottom: 30px;
 `;
-
 const TextInput1 = styled.textarea`
   line-height: 1.4;
   background-color: #f2f3f6;
@@ -212,12 +201,10 @@ const TextInput1 = styled.textarea`
   margin-bottom: 30px;
   /* line-height: -500px; */
 `;
-
 const But = styled.div`
   display: flex;
   gap: 0px 100px;
 `;
-
 const X = styled.button`
   background-color: #fff;
   opacity: 0.7;
@@ -231,7 +218,6 @@ const X = styled.button`
     background-color: #f2f3f6;
   }
 `;
-
 const Ok = styled.button`
   padding: 10px 20px;
   border-radius: 10px;
