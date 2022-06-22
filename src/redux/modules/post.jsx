@@ -7,7 +7,6 @@ const LOAD_POST = "LOAD_POST";
 const DELETE_POST = "DELETE_POST";
 const UPDATE_POST = "UPDATE_POST";
 const LOAD_DETAIL = "LOAD_DETAIL";
-// const LOAD_DETAIL = "LOAD_DETAIL";
 
 //액션 크리에이터
 const addPost = (payload) => {
@@ -30,7 +29,6 @@ const loadDetail = (payload) => {
   return { type: LOAD_DETAIL, payload };
 };
 
-
 //initial state
 const initialState = {
   data: [],
@@ -38,27 +36,26 @@ const initialState = {
 };
 
 //청크
-export const __addPost = (payload) => async (dispatch) => {
-  console.log(payload);
+export const __addPost = (payload) => async (dispatch, getState) => {
+  // console.log(payload);
+  // payload.formData.forEach((formData, key) => {
+  //   console.log(payload.formData.get(key));
+  // });
   const myToken = getCookie("authorization");
-  // console.log(myToken);
+  console.log(payload.formData);
   try {
     const res = await axios.post(
       "http://3.39.25.179/api/posting",
-      {
-        title: payload.title,
-        content: payload.content,
-        price: payload.price,
-        imageUrls: payload.imageUrls,
-      },
+      payload.formData,
       {
         headers: {
           Authorization: `Bearer ${myToken}`,
+          "Content-Type": "multipart/form-data",
         },
       }
     );
     window.alert("작성완료!");
-    // console.log(res);
+    console.log(res);
     dispatch(addPost(res.data.body));
   } catch (error) {
     window.alert("작성에러!");
@@ -139,7 +136,6 @@ export const __loadDetail = (payload) => async (dispatch) => {
   }
 };
 
-
 //리듀서
 const postReducer = (state = initialState, action) => {
   // console.log(state)
@@ -171,7 +167,6 @@ const postReducer = (state = initialState, action) => {
     case LOAD_DETAIL:
       console.log(action.payload);
       return { ...state, detailData: action.payload };
-
 
     default:
       return state;
