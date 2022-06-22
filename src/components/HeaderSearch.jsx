@@ -5,10 +5,12 @@ import React, { useState } from "react";
 // redux
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const PostSearch = (payload) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -46,6 +48,5 @@ const Search1 = styled.input`
   width: 360px;
   color: #212124;
 `;
-
 
 export default PostSearch;
