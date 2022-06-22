@@ -80,7 +80,6 @@ const PostAdd = () => {
               id="files"
               accept={"image/*"}
               onChange={(e) => {
-                setImageUrls(e.target.files);
                 encodeFileToBase64(e.target.files[0]);
                 uploadFB(e);
               }}

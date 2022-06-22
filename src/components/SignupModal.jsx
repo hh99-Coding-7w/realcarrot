@@ -99,7 +99,11 @@ const SignupModal = (props) => {
         window.alert("사용 가능한 아이디입니다.");
       })
       .catch((error) => {
-        window.alert("이미 사용중인 아이디입니다.");
+        if (Username == "") {
+          window.alert("아이디를 입력해주세요");
+        } else {
+          window.alert("이미 사용중인 아이디입니다.");
+        }
         console.log("Login Error", error);
       });
   };
@@ -135,73 +139,73 @@ const SignupModal = (props) => {
                 className="rightside"
               >
                 <div>
-                    <Put1
-                      type="text"
-                      placeholder="ID:"
-                      value={Username}
-                      onChange={(event) => {
-                        setUsername(event.target.value);
+                  <Put1
+                    type="text"
+                    placeholder="ID:"
+                    value={Username}
+                    onChange={(event) => {
+                      setUsername(event.target.value);
+                    }}
+                  />
+                  <h6>아이디는 4자 이상 영문과 숫자로만 이루어주세요</h6>
+                  <DupButton onClick={CheckUsername}>중복확인</DupButton>
+                  <Put1
+                    type="text"
+                    placeholder="NickName:"
+                    value={Nickname}
+                    onChange={(event) => {
+                      setNickname(event.target.value);
+                    }}
+                  />
+                  <DupButton onClick={CheckNick}>중복확인</DupButton>
+                  <Put1
+                    type="password"
+                    placeholder="PassWord:"
+                    value={Password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                    }}
+                    ref={password}
+                  />
+                  <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어주세요</h6>
+                  <Put1
+                    type="password"
+                    placeholder="Confirm PassWord:"
+                    value={Password2}
+                    onChange={(event) => {
+                      setPassword2(event.target.value);
+                    }}
+                    ref={password2}
+                  />
+                  <p ref={check} />
+                  <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어주세요</h6>
+                  <>
+                    <DrupDown
+                      setLocation={setLocation}
+                      Location={Location}
+                    ></DrupDown>
+                  </>
+                  프로필 사진
+                  {fileImage && (
+                    <img
+                      alt="sample"
+                      src={fileImage}
+                      style={{
+                        margin: "auto",
+                        maxWidth: "300px",
+                        maxHeight: "250px",
                       }}
                     />
-                    <h6>아이디는 4자 이상 영문과 숫자로만 이루어주세요</h6>
-                    <DupButton onClick={CheckUsername}>중복확인</DupButton>
-                    <Put1
-                      type="text"
-                      placeholder="NickName:"
-                      value={Nickname}
-                      onChange={(event) => {
-                        setNickname(event.target.value);
-                      }}
-                    />
-                    <DupButton onClick={CheckNick}>중복확인</DupButton>
-                    <Put1
-                      type="password"
-                      placeholder="PassWord:"
-                      value={Password}
-                      onChange={(event) => {
-                        setPassword(event.target.value);
-                      }}
-                      ref={password}
-                    />
-                    <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어주세요</h6>
-                    <Put1
-                      type="password"
-                      placeholder="Confirm PassWord:"
-                      value={Password2}
-                      onChange={(event) => {
-                        setPassword2(event.target.value);
-                      }}
-                      ref={password2}
-                    />
-                    <p ref={check} />
-                    <h6>비밀번호는 8자 이상 영문과 숫자로만 이루어주세요</h6>
-                    <>
-                      <DrupDown
-                        setLocation={setLocation}
-                        Location={Location}
-                      ></DrupDown>
-                    </>
-                    프로필 사진
-                    {fileImage && (
-                      <img
-                        alt="sample"
-                        src={fileImage}
-                        style={{
-                          margin: "auto",
-                          maxWidth: "300px",
-                          maxHeight: "250px",
-                        }}
-                      />
-                    )}
-                    <Input
-                      name="imgUpload"
-                      type="file"
-                      accept="image/*"
-                      ref={fileInputRef}
-                      onChange={saveFileImage}
-                    />
-                    <div style={{ fontSize: "10px", color: "tomato" }}></div>
-                    <Bt onClick={onSubmitUserHandler}>가입하기</Bt>
+                  )}
+                  <Input
+                    name="imgUpload"
+                    type="file"
+                    accept="image/*"
+                    ref={fileInputRef}
+                    onChange={saveFileImage}
+                  />
+                  <div style={{ fontSize: "10px", color: "tomato" }}></div>
+                  <Bt onClick={onSubmitUserHandler}>가입하기</Bt>
                 </div>
               </Mod>
             </Main>
@@ -228,7 +232,7 @@ const Main = styled.div`
 const Put1 = styled.input`
   line-height: 1.4;
   font-size: 20px;
-  background-color: #F2F3F6;
+  background-color: #f2f3f6;
   box-sizing: border-box;
   height: 40px;
   padding: 16px 23px;
@@ -250,7 +254,7 @@ const Bt = styled.button`
   border-radius: 10px;
   margin-top: 20px;
   &:hover {
-    background-color: #F2F3F6;
+    background-color: #f2f3f6;
   }
 `;
 const DupButton = styled.button`
