@@ -10,7 +10,6 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import styled from "styled-components";
 //드롭다운
 import DrupDown from "./DrupDown";
-
 const SignupModal = (props) => {
   const { open, close, header } = props;
   const [Username, setUsername] = useState("");
@@ -28,7 +27,6 @@ const SignupModal = (props) => {
   } else if (Password !== Password2) {
     check.current.innerText = ":x:";
   }
-
   //아이디,비번,닉네임 정규식
   const idCheck = (id) => {
     let regExp = /^[0-9a-zA-Z]{4,}$/;
@@ -93,7 +91,6 @@ const SignupModal = (props) => {
     const file_url = await getDownloadURL(uploaded_file.ref);
     fileInputRef.current = { url: file_url };
   };
-
   // 아이디 중복 체크
   const CheckUsername = async () => {
     await axios
@@ -106,7 +103,6 @@ const SignupModal = (props) => {
         console.log("Login Error", error);
       });
   };
-
   // 닉네임 중복 체크
   const CheckNick = async () => {
     await axios
@@ -119,7 +115,6 @@ const SignupModal = (props) => {
         console.log("Login Error", error);
       });
   };
-
   return (
     <React.Fragment>
       <div className={open ? "openModal modal" : "modal"}>
@@ -136,7 +131,7 @@ const SignupModal = (props) => {
                 <img src={ekdrms} alt="당근마켓" />
               </div>
               <Mod
-                style={{ borderLeft: "1px solid #6c757d" }}
+                style={{ borderLeft: "1px solid #6C757D" }}
                 className="rightside"
               >
                 <div>
@@ -221,22 +216,19 @@ const SignupModal = (props) => {
     </React.Fragment>
   );
 };
-
 const Input = styled.input`
   display: ${(props) => (props.fileImage ? "none" : "")};
 `;
-
 const Main = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-
 const Put1 = styled.input`
   line-height: 1.4;
   font-size: 20px;
-  background-color: #f2f3f6;
+  background-color: #F2F3F6;
   box-sizing: border-box;
   height: 40px;
   padding: 16px 23px;
@@ -247,7 +239,6 @@ const Put1 = styled.input`
   margin-top: 25px;
   margin-bottom: 1rem;
 `;
-
 const Bt = styled.button`
   background-color: #fff;
   opacity: 0.7;
@@ -259,10 +250,9 @@ const Bt = styled.button`
   border-radius: 10px;
   margin-top: 20px;
   &:hover {
-    background-color: #f2f3f6;
+    background-color: #F2F3F6;
   }
 `;
-
 const DupButton = styled.button`
   background-color: #212121;
   color: white;
@@ -273,7 +263,6 @@ const DupButton = styled.button`
     opacity: 1;
   }
 `;
-
 const Mod = styled.div`
   margin: auto;
 `;

@@ -8,6 +8,7 @@ import PostDetail from "./pages/PostDetail";
 import PostUpdate from "./pages/PostUpdate";
 import PostSearch from "./pages/PostSearch";
 
+
 function App() {
   return (
     <>
