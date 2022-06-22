@@ -116,6 +116,7 @@
 //     // navigate("/main");
 //   };
 
+
 //   return (
 //     <>
 //       <Header />
@@ -137,4 +138,23 @@
 
 // export default PostAdd;
 
+//   return (
+//     <>
+//       <Header />
+//       <div>
+//         <p>이미지</p>
+//         <input type="file" multiple accept="image/*" onChange={onChangeImg} />
+//         <p>제목</p>
+//         <input type="text" ref={titleRef} />
+//         <p>내용</p>
+//         <input type="text" ref={contentRef} />
+//         <p>가격</p>
+//         <input type="text" ref={priceRef} />
+//       </div>
+//       <button onClick={addPost}>작성완료</button>
+//       <Footer />
+//     </>
+//   );
+// };
 
+// export default PostAdd;

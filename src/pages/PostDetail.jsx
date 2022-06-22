@@ -17,14 +17,9 @@ const PostDetail = () => {
 
   console.log(data);
 
-  // console.log(loginUser);
-
-  // console.log(params.id);
-
   useEffect(() => {
     dispatch(
       __loadDetail({
-        // Authorization: getCookie("authorization"),
         id: params.id,
       })
     );
@@ -33,20 +28,30 @@ const PostDetail = () => {
   const removePost = () => {
     dispatch(
       __deletePost({
-        // Authorization: getCookie("authorization"),
         id: params.id,
       })
     );
     navigate(-1);
+    dispatch(__loadPost());
   };
-
+  console.log(data?.imageUrls);
   return (
     <>
       <Header />
       <Detail>
         <ArticleImage>
-          <p>이미지~</p>
-          <img src={data?.image} />
+          <a href={data?.imageUrls} target="_blank">
+            <img
+              src={data?.imageUrls}
+              style={{
+                position: "absolute",
+                top: "0",
+                bottom: "0",
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          </a>
         </ArticleImage>
         <UserDetail>
           <div style={{ display: "flex" }}>
@@ -85,7 +90,9 @@ const PostDetail = () => {
           <p style={{ marginTop: "4px", fontSize: "13px", color: "#868e96" }}>
             {data?.calculatedTime}
           </p>
-          <p style={{ fontSize: "18px", fontWeight: "bold" }}>{data?.price}원</p>
+          <p style={{ fontSize: "18px", fontWeight: "bold" }}>
+            {data?.price}원
+          </p>
           <p style={{ fontSize: "17px", margin: "16px" }}>{data?.content}</p>
         </ArticleDesc>
       </Detail>
@@ -101,16 +108,20 @@ const Detail = styled.div`
 
 const ArticleImage = styled.div`
   position: relative;
+  overflow: hidden;
   width: 730px;
+  height: 730px;
   margin: 0 auto;
-  background-color: blue;
+  border-radius: 12px;
+  box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 15%);
+  box-sizing: border-box;
 `;
 
 const UserDetail = styled.div`
   width: 677px;
   margin: 0 auto;
   margin-top: 25px;
-  margin-bottom: 23px;
+  margin-bottom: 10px;
   position: relative;
   border-bottom: 1px solid #e9ecef;
   display: flex;
@@ -127,7 +138,7 @@ const UserProfile = styled.img`
 
 const ArticleDesc = styled.div`
   position: relative;
-  padding: 32px 0;
+  padding: 10px 0;
   width: 677px;
   margin: 0 auto;
   border-bottom: 1px solid #e9ecef;

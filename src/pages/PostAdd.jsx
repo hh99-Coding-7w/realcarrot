@@ -10,13 +10,14 @@ import snRl from "../image/snRl.png";
 const PostAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const imageUrlsRef = useRef(null);
+
+  const imageUrlsRef = useRef(null);
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
   const [price, setPrice] = useState();
-  const [imageUrls, setImageUrls] = useState();
+
   const addPost = (e) => {
-    if (imageUrls === "" || title === "" || content === "" || price === "") {
+    if (title === "" || content === "" || price === "") {
       window.alert("모두 입력해주세요.");
       return;
     }
@@ -25,27 +26,34 @@ const PostAdd = () => {
         title: title,
         content: content,
         price: price,
-        imageUrls: imageUrls,
+        imageUrls: imageUrlsRef.current.url,
       })
     );
-    // navigate("/main");
-    // dispatch(__loadPost());
+
+    navigate("/main");
+    dispatch(__loadPost());
   };
+
   // 미리보기
   const [fileImage, setFileImage] = useState();
+
   const uploadFB = async (e) => {
     const uploaded_file = await uploadBytes(
       ref(storage, `postImages/${e.target.files[0].name}`),
       e.target.files[0]
     );
     const file_url = await getDownloadURL(uploaded_file.ref);
-    imageUrls.current = { url: file_url };
-    console.log(imageUrls.current.url);
+    imageUrlsRef.current = { url: file_url };
+    console.log(imageUrlsRef.current.url);
   };
+
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
+
     reader.readAsDataURL(fileBlob);
+
     console.log(reader);
+
     return new Promise((resolve) => {
       reader.onload = () => {
         setFileImage(reader.result);

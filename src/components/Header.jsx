@@ -36,6 +36,7 @@ const Header = () => {
 
   const onLogout = (e) => {
     deleteCookie("authorization");
+    deleteCookie("username");
     setCookie(false);
   };
 
