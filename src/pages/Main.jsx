@@ -31,7 +31,16 @@ const Main = () => {
               }}
             >
               <Image>
-                <p>{data?.image}</p>
+                <img
+                  src={data?.imageUrls}
+                  style={{
+                    position: "absolute",
+                    top: "0",
+                    bottom: "0",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                />
               </Image>
               <Desc>
                 <Title>{data?.title}</Title>
@@ -74,7 +83,6 @@ const Wrap = styled.div`
 `;
 
 const Post = styled.div`
-  border: solid 1px black;
   width: calc(25% - 44px);
   margin-bottom: 56px;
   display: block;
@@ -86,7 +94,6 @@ const Image = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  background-color: blue;
   box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 15%);
   box-sizing: border-box;
 `;

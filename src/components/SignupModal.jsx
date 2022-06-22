@@ -81,6 +81,7 @@ const SignupModal = (props) => {
     });
     console.log(res);
     window.location.replace("/");
+    window.alert("완료되었습니다.");
   };
   //사진 업로드
   const saveFileImage = async (e) => {

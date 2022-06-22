@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 const Footer = () => {
   return (
-    <Footer2>
-      <div>
-        <Footer1>
+    <Footer1>
+      <div style={{ width: "1000px" }}>
+        <Footer2 style={{ borderBottom: "1px solid" }}>
           <img
             alt="logo"
             src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/logo-a4f4848ffd1d5fcb13d1d3ecf82ffbc77c31ebe226f67097386497a34638c059.svg"
+            style={{ width: "130px", height: "37px" }}
           />
           <ul>
             <li>믿을 수 있는 중고거래</li>
@@ -30,8 +31,8 @@ const Footer = () => {
             <li>위치기반서비스 이용약관</li>
             <li>이용자보호 비전과 계획</li>
           </ul>
-        </Footer1>
-        <Footer1>
+        </Footer2>
+        <Footer2>
           <ul>
             <li>고객문의 cs@daangnservice.com</li>
             <li>제휴문의 contact@daangn.com</li>
@@ -49,29 +50,26 @@ const Footer = () => {
             <li>사업자 등록번호 : 375-87-00088</li>
             <li>직업정보제공사업 신고번호 : J1200020200016</li>
           </ul>
-        </Footer1>
-        <Footer1>
+        </Footer2>
+        <Footer2>
           <ul style={{ display: "flex", gap: "30px" }}>
             <li>
               <img
                 alt="facebook"
                 src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-facebook-0563f4a93852d073b41f13b8bcabb03d47af3bb3a6755cdfedd8a73686c7f18c.svg"
               />
-              <span>facebook</span>
             </li>
             <li>
               <img
                 alt="instagram"
                 src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-instagram-2f6c88a461597907c114b7ce28eab053fcae791ed26417915fefb6f7c9f95756.svg"
               />
-              <span>instagram</span>
             </li>
             <li>
               <img
                 alt="blog"
                 src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/footer/icon-blog-e1b0d512d1766a6962ec5bbb5b0803d2a6a9c55ad97db5ba9eebb76013caceba.svg"
               />
-              <span>blog</span>
             </li>
             <li>
               <img
@@ -89,28 +87,32 @@ const Footer = () => {
               </select>
             </li>
           </ul>
-        </Footer1>
-        <div>©Danggeun Market Inc.</div>
+          <br />
+          <div>©Danggeun Market Inc.</div>
+        </Footer2>
       </div>
-    </Footer2>
+    </Footer1>
   );
 };
-
-const Footer2 = styled.footer`
-  background-color: rgb(73, 80, 87);
-  color: white;
-  display: flex;
-  justify-content: center;
-  padding: 100px 0;
-`;
 
 const Footer1 = styled.footer`
   background-color: rgb(73, 80, 87);
   color: white;
   display: flex;
   justify-content: center;
-  gap: 150px;
-  margin: 30px;
+  padding-top: 50px;
+`;
+
+const Footer2 = styled.footer`
+  background-color: rgb(73, 80, 87);
+  color: white;
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 13px;
+  color: rgb(148, 157, 167);
+  padding: 10px;
 `;
 
 export default Footer;

@@ -10,6 +10,8 @@ import {
 import { getCookie } from "../shared/Cookie";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../shared/Firebase";
 
 const PostUpdate = () => {
   const dispatch = useDispatch();
@@ -22,33 +24,64 @@ const PostUpdate = () => {
   const imageUrlsRef = useRef();
 
   const reloadPost = () => {
-    dispatch(
-      __updatePost({
-        title: titleRef.current.value,
-        content: contentRef.current.value,
-        price: priceRef.current.value,
-        imageUrls: imageUrlsRef.current.value,
-        id: id,
-      })
+    setTimeout(() => {
+      dispatch(
+        __updatePost({
+          title: titleRef.current.value,
+          content: contentRef.current.value,
+          price: priceRef.current.value,
+          imageUrls: imageUrlsRef.current.value,
+          id: id,
+        })
+      );
+      navigate("/main");
+      dispatch(__loadPost());
+    }, 1000);
+  };
+
+  const [fileImage, setFileImage] = useState();
+
+  const uploadFB = async (e) => {
+    const uploaded_file = await uploadBytes(
+      ref(storage, `postImages/${e.target.files[0].name}`),
+      e.target.files[0]
     );
-    navigate("/main");
+    const file_url = await getDownloadURL(uploaded_file.ref);
+    imageUrlsRef.current = { url: file_url };
+    console.log(imageUrlsRef.current.url);
+  };
+
+  const encodeFileToBase64 = (fileBlob) => {
+    const reader = new FileReader();
+
+    reader.readAsDataURL(fileBlob);
+
+    console.log(reader);
+
+    return new Promise((resolve) => {
+      reader.onload = () => {
+        setFileImage(reader.result);
+        resolve();
+      };
+    });
   };
 
   return (
     <>
       <Header />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <div>
+        <input
+          type="file"
+          placeholder="PICTURE"
+          id="file"
+          accept={"image/*"}
+          onChange={(e) => {
+            encodeFileToBase64(e.target.files[0]);
+            uploadFB(e);
+          }}
+        />
+        <div>{fileImage && <img src={fileImage} alt="preview-img" />}</div>
+      </div>
       <div>
         <p>제목</p>
         <input ref={titleRef} type="text" placeholder="제목을 입력해주세요" />
@@ -60,14 +93,6 @@ const PostUpdate = () => {
       <div>
         <p>가격</p>
         <input ref={priceRef} type="number" placeholder="가격을 입력해주세요" />
-      </div>
-      <div>
-        <p>이미지</p>
-        <input
-          ref={imageUrlsRef}
-          type="text"
-          placeholder="이미지을 입력해주세요"
-        />
       </div>
       <button onClick={reloadPost}>작성완료</button>
       <Footer />

@@ -36,27 +36,26 @@ const initialState = {
 };
 
 //청크
-export const __addPost = (payload) => async (dispatch, getState) => {
-  // console.log(payload);
-  // payload.formData.forEach((formData, key) => {
-  //   console.log(payload.formData.get(key));
-  // });
+export const __addPost = (payload) => async (dispatch) => {
   const myToken = getCookie("authorization");
-  console.log(payload.formData);
   try {
     const res = await axios.post(
       "http://3.39.25.179/api/posting",
-      payload.formData,
+      {
+        title: payload.title,
+        content: payload.content,
+        price: payload.price,
+        imageUrls: payload.imageUrls,
+      },
       {
         headers: {
           Authorization: `Bearer ${myToken}`,
-          "Content-Type": "multipart/form-data",
         },
       }
     );
     window.alert("작성완료!");
     console.log(res);
-    dispatch(addPost(res.data.body));
+    dispatch(addPost(res.data));
   } catch (error) {
     window.alert("작성에러!");
   }
@@ -76,7 +75,7 @@ export const __loadPost = (payload) => async (dispatch) => {
 };
 
 export const __deletePost = (payload) => async (dispatch) => {
-  // console.log(payload);
+  console.log(payload);
   const myToken = getCookie("authorization");
   // console.log(myToken);
   try {
@@ -103,8 +102,7 @@ export const __updatePost = (payload, id) => async (dispatch) => {
         title: payload.title,
         content: payload.content,
         price: payload.price,
-        location: payload.location,
-        imageUrls: [payload.imageUrls],
+        imageUrls: payload.imageUrls,
       },
       {
         headers: {

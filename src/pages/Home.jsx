@@ -135,14 +135,18 @@ const Home = () => {
         <Title>중고거래 인기매물</Title>
         <Wrap4>
           <Box>
-            <div>
+            <Image>
               <img
                 alt="이사정리"
                 src="https://dnvefa72aowie.cloudfront.net/origin/article/202206/246da9bc0dc96051a4b74fc4a246eff991ae34bbeff5ad2d91049dedab30836e.webp?q=82&amp;s=300x300&amp;t=crop"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
               />
-            </div>
+            </Image>
             <div>
-              <h2>이사정리</h2>
+              <h2 style={{fontSize:"20px"}}>이사정리</h2>
               <div>5,000원</div>
               <div>울산 남구 신정5동</div>
               <div>
@@ -151,14 +155,18 @@ const Home = () => {
             </div>
           </Box>
           <Box>
-            <div>
+            <Image>
               <img
                 alt="야외 테이블 (드림)"
                 src="https://dnvefa72aowie.cloudfront.net/origin/article/202206/01F8179A40859B12B3F14570EE222631653B79A70E0611577BD9DA0CEA8D589A.jpg?q=82&amp;s=300x300&amp;t=crop"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
               />
-            </div>
+            </Image>
             <div>
-              <h2>야외 테이블 (드림)</h2>
+              <h2 style={{fontSize:"20px"}}>야외 테이블 (드림)</h2>
               <div>1,000원</div>
               <div>경기도 파주시 운정3동</div>
               <div>
@@ -167,14 +175,18 @@ const Home = () => {
             </div>
           </Box>
           <Box>
-            <div>
+            <Image>
               <img
                 alt="삼성 냉장고 (모델명:RT25HAR4DWW)"
                 src="https://dnvefa72aowie.cloudfront.net/origin/article/202206/db1c69cf4ad6b51c43846003e92e34c2df323854f7d4912f7a63b0956486d5cd.webp?q=82&amp;s=300x300&amp;t=crop"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
               />
-            </div>
+            </Image>
             <div>
-              <h2>삼성 냉장고 (모델명:RT25HAR4DWW)</h2>
+              <h2 style={{fontSize:"20px"}}>삼성 냉장고</h2>
               <div>139,000원</div>
               <div>서울 금천구 가산동</div>
               <div>
@@ -183,14 +195,18 @@ const Home = () => {
             </div>
           </Box>
           <Box>
-            <div>
+            <Image>
               <img
                 alt="장난감 및 유아매트"
                 src="https://dnvefa72aowie.cloudfront.net/origin/article/202206/6287069382be2d125adb0f72b0bf3ce4043f86fb6b28499e6514cfb6ef2439e1.webp?q=82&amp;s=300x300&amp;t=crop"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
               />
-            </div>
+            </Image>
             <div>
-              <h2>장난감 및 유아매트</h2>
+              <h2 style={{fontSize:"20px"}}>장난감 및 유아매트</h2>
               <div>2,000원</div>
               <div>경기도 안산시 단원구 고잔동</div>
               <div>
@@ -313,7 +329,17 @@ const Wrap4 = styled.div`
 
 const Box = styled.div`
   background-color: rgb(248, 249, 250);
-  height: 500px;
+  height: 400px;
+`;
+
+const Image = styled.div`
+  width: 200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: inset 0px 0px 0px 1px rgb(0 0 0 / 15%);
+  box-sizing: border-box;
 `;
 
 export default Home;
