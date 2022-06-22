@@ -101,10 +101,11 @@ const SignupModal = (props) => {
       })
       .catch((error) => {
         if (Username == "") {
-          window.alert("아이디를 입력해주세요.");
+          window.alert("아이디를 입력해주세요");
         } else {
           window.alert("이미 사용중인 아이디입니다.");
         }
+        console.log("Login Error", error);
       });
   };
   // 닉네임 중복 체크
