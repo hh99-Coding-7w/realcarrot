@@ -46,11 +46,15 @@ export const __addPost = (payload) => async (dispatch, getState) => {
   try {
     const res = await axios.post(
       "http://3.39.25.179/api/posting",
-      payload.formData,
+      {
+      title: payload.title,
+      content: payload.content,
+      price: payload.price,
+      imageUrls: payload.imageUrls,
+      },
       {
         headers: {
           Authorization: `Bearer ${myToken}`,
-          "Content-Type": "multipart/form-data",
         },
       }
     );
