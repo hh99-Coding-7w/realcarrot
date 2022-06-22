@@ -124,7 +124,7 @@ const Header = () => {
                     modalOpen2 == true ? <SignupModal open={openModal2} close={closeModal2} header="회원가입"/> : null // 기계역활
                   }
               </>
-            )}
+            )} 
           </Menu>
         </Svg>
       </Wrap>
