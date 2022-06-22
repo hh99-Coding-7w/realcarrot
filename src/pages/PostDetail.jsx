@@ -31,7 +31,7 @@ const PostDetail = () => {
         id: params.id,
       })
     );
-    navigate(-1);
+    navigate("/main");
     dispatch(__loadPost());
   };
   console.log(data?.imageUrls);

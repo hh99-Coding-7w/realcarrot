@@ -23,7 +23,7 @@ const PostSearch = () => {
     <>
       <Header />
       <PostBox>
-        <HeadTitle>검색 매물</HeadTitle>
+        <HeadTitle>"{payload}"로 검색</HeadTitle>
         <Wrap>
           {datas?.map((data) => (
             <Post

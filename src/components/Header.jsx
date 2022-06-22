@@ -8,12 +8,11 @@ import SignupModal from "./SignupModal";
 import PostSearch from "./HeaderSearch";
 
 const Header = () => {
-
   const cookie = getCookie("authorization");
   const [is_cookie, setCookie] = React.useState(false);
 
   const [modalOpen, setModalOpen] = React.useState(false);
-  const [modalOpen2,setModalOpen2] = React.useState(false);
+  const [modalOpen2, setModalOpen2] = React.useState(false);
 
   const openModal = () => {
     setModalOpen(true);
@@ -111,41 +110,47 @@ const Header = () => {
               </>
             ) : (
               <>
-                <PostSearch></PostSearch>             
-                  <LoginButton onClick={()=>{setModalOpen(true)}}>
-                    <h3>로그인</h3>
-                  </LoginButton>
-                  {
-                    modalOpen == true ? <LoginModal open={openModal} close={closeModal} header="로그인"/> : null // 기계역활
-                  }
-                  <SignUpButton onClick={()=>{setModalOpen2(true)}}>
-                    <h3>회원가입</h3>
-                  </SignUpButton>
-                  {
-                    modalOpen2 == true ? <SignupModal open={openModal2} close={closeModal2} header="회원가입"/> : null // 기계역활
-                  }
+                <PostSearch></PostSearch>
+                <LoginButton
+                  onClick={() => {
+                    setModalOpen(true);
+                  }}
+                >
+                  <h3>로그인</h3>
+                </LoginButton>
+                {
+                  modalOpen == true ? (
+                    <LoginModal
+                      open={openModal}
+                      close={closeModal}
+                      header="로그인"
+                    />
+                  ) : null // 기계역활
+                }
+                <SignUpButton
+                  onClick={() => {
+                    setModalOpen2(true);
+                  }}
+                >
+                  <h3>회원가입</h3>
+                </SignUpButton>
+                {
+                  modalOpen2 == true ? (
+                    <SignupModal
+                      open={openModal2}
+                      close={closeModal2}
+                      header="회원가입"
+                    />
+                  ) : null // 기계역활
+                }
               </>
-            )} 
+            )}
           </Menu>
         </Svg>
       </Wrap>
     </>
   );
 };
-const Svg = styled.div`
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 20%;
-`;
-
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-`;
 
 const Wrap = styled.div`
   display: flex;
@@ -153,7 +158,22 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: center;
   background-color: rgb(255, 255, 255);
-  padding: 10px;
+  width: 100%;
+`;
+
+const Svg = styled.div`
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  padding: 0 20%;
+`;
+
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const Menu = styled.div`
