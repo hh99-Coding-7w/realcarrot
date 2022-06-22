@@ -12,15 +12,18 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../shared/Firebase";
 import styled from "styled-components";
 import snRl from "../image/snRl.png";
+
 const PostUpdate = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
   const id = params.id;
+
   const imageUrlsRef = useRef();
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
   const [price, setPrice] = useState();
+
   const reloadPost = (e) => {
     if (title === "" || content === "" || price === "") {
       window.alert("모두 입력해주세요.");
@@ -92,6 +95,7 @@ const PostUpdate = () => {
               />
             )}
           </div>
+
           <div>
             <h2>제목</h2>
             <Input1
@@ -160,8 +164,7 @@ const FatherBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: calc(100vh - 80px);
+  margin: 100px 0;
 `;
 const MatherBox = styled.div`
   display: flex;
@@ -174,7 +177,7 @@ const MatherBox = styled.div`
 `;
 const Input1 = styled.input`
   line-height: 1.4;
-  background-color: #F2F3F6;
+  background-color: #f2f3f6;
   box-sizing: border-box;
   height: 40px;
   padding: 16px 23px;
@@ -186,7 +189,7 @@ const Input1 = styled.input`
 `;
 const TextInput1 = styled.textarea`
   line-height: 1.4;
-  background-color: #F2F3F6;
+  background-color: #f2f3f6;
   box-sizing: border-box;
   height: 40px;
   padding: 10px 15px;
@@ -213,14 +216,15 @@ const X = styled.button`
   padding: 10px 20px;
   border-radius: 10px;
   &:hover {
-    background-color: #F2F3F6;
+    background-color: #f2f3f6;
   }
 `;
 const Ok = styled.button`
   padding: 10px 20px;
   border-radius: 10px;
   &:hover {
-    background-color: #F2F3F6;
+    background-color: #f2f3f6;
   }
 `;
+
 export default PostUpdate;

@@ -7,6 +7,7 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../shared/Firebase";
 import styled from "styled-components";
 import snRl from "../image/snRl.png";
+
 const PostAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -61,6 +62,7 @@ const PostAdd = () => {
       };
     });
   };
+
   return (
     <>
       <Header />
@@ -163,8 +165,7 @@ const FatherBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: calc(100vh - 80px);
+  margin: 100px 0;
 `;
 
 const MatherBox = styled.div`
@@ -232,4 +233,5 @@ const Ok = styled.button`
     background-color: #f2f3f6;
   }
 `;
+
 export default PostAdd;
