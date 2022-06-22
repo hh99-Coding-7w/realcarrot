@@ -7,8 +7,7 @@ import PostAdd from "./pages/PostAdd";
 import PostDetail from "./pages/PostDetail";
 import PostUpdate from "./pages/PostUpdate";
 import PostSearch from "./pages/PostSearch";
-import SignUp from "./pages/SignUp";
-import Login from "./pages/Login"
+
 
 
 function App() {
