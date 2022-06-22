@@ -2,12 +2,15 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __loadPost } from "../redux/modules/post";
+import { getCookie } from "../shared/Cookie";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 
 const Main = () => {
+  const cookie = getCookie("username");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.postReducer.data);
@@ -16,6 +19,9 @@ const Main = () => {
   useEffect(() => {
     dispatch(__loadPost());
   }, [dispatch]);
+
+
+
 
   return (
     <>
@@ -27,7 +33,12 @@ const Main = () => {
             <Post
               key={data.id}
               onClick={() => {
-                navigate(`/post/${data.id}`);
+                if (cookie == null) {
+                  window.alert("로그인후 사용해주세요~");
+                  navigate("/main");
+                } else {
+                  navigate(`/post/${data.id}`);
+                }
               }}
             >
               <Image>
