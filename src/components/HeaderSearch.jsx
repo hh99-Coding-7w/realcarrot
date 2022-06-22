@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 const PostSearch = (payload) => {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -48,6 +48,5 @@ const Search1 = styled.input`
   width: 360px;
   color: #212124;
 `;
-
 
 export default PostSearch;
