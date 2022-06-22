@@ -102,7 +102,6 @@ const PostUpdate = () => {
               />
             )}
           </div>
-
           <div>
             <h2>제목</h2>
             <Input1
