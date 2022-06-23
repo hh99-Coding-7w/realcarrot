@@ -1,8 +1,5 @@
-//모듈
-// import { __searchPost } from "../redux/modules/user";
 import { __searchPost } from "../redux/modules/search";
 import React, { useState } from "react";
-// redux
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +11,6 @@ const PostSearch = (payload) => {
 
   return (
     <>
-      {/* <button>뒤로가기</button> */}
       <form onSubmit="return false">
         <Search1
           value={search}

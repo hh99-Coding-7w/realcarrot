@@ -11,7 +11,6 @@ import snRl from "../image/snRl.png";
 const PostAdd = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const imageUrlsRef = useRef(null);
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
@@ -30,12 +29,10 @@ const PostAdd = () => {
         imageUrls: imageUrlsRef.current.url,
       })
     );
-
     navigate("/main");
     dispatch(__loadPost());
   };
 
-  // 미리보기
   const [fileImage, setFileImage] = useState();
 
   const uploadFB = async (e) => {
@@ -43,17 +40,15 @@ const PostAdd = () => {
       ref(storage, `postImages/${e.target.files[0].name}`),
       e.target.files[0]
     );
+
     const file_url = await getDownloadURL(uploaded_file.ref);
     imageUrlsRef.current = { url: file_url };
-    console.log(imageUrlsRef.current.url);
   };
 
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
 
     reader.readAsDataURL(fileBlob);
-
-    console.log(reader);
 
     return new Promise((resolve) => {
       reader.onload = () => {
@@ -204,7 +199,6 @@ const TextInput1 = styled.textarea`
   overflow: hidden;
   resize: none;
   margin-bottom: 30px;
-  /* line-height: -500px; */
 `;
 
 const But = styled.div`

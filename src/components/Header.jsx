@@ -10,13 +10,13 @@ import PostSearch from "./HeaderSearch";
 const Header = () => {
   const cookie = getCookie("authorization");
   const [is_cookie, setCookie] = React.useState(false);
-
   const [modalOpen, setModalOpen] = React.useState(false);
   const [modalOpen2, setModalOpen2] = React.useState(false);
 
   const openModal = () => {
     setModalOpen(true);
   };
+
   const closeModal = () => {
     setModalOpen(false);
   };
@@ -24,9 +24,11 @@ const Header = () => {
   const openModal2 = () => {
     setModalOpen2(true);
   };
+
   const closeModal2 = () => {
     setModalOpen2(false);
   };
+
   React.useEffect(() => {
     if (cookie !== undefined) {
       return setCookie(true);

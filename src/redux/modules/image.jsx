@@ -1,11 +1,10 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-
 import { storage } from "../../shared/Firebase";
 
 //액션 타입
-const UPLOADING = "UPLOADING"; //스토어에 이미지업로드
-const UPLOAD_IMG = "UPLOAD_IMG"; //파베데이터베이스에 이미지 url업로드
+const UPLOADING = "UPLOADING";
+const UPLOAD_IMG = "UPLOAD_IMG";
 const SET_PRE = "SET_PRE";
 
 //액션 크리에이터
@@ -25,9 +24,7 @@ const uploadImageFB = (image) => {
   return function (dispatch, getState, { history }) {
     dispatch(uploading(true));
     const _upload = storage.ref(`postImages/${image.name}`).put(image);
-
     _upload.then((snapshot) => {
-      console.log(snapshot);
       snapshot.ref
         .getDownloadURL()
         .then((url) => {

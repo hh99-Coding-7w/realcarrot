@@ -1,6 +1,6 @@
 import React from "react";
 
-const DrupDown = ({ setLocation, Location }) => {
+const DropDown = ({ setLocation, Location }) => {
   const selectList = [
     "강남구",
     "강동구",
@@ -32,9 +32,10 @@ const DrupDown = ({ setLocation, Location }) => {
   const handleSelect = (e) => {
     setLocation(e.target.value);
   };
+
   return (
     <div>
-      <h3 style={{marginBottom:"1rem",marginTop:"1rem"}}>서울특별시</h3>
+      <h3 style={{ marginTop: "1rem" }}>서울특별시</h3>
       <div>
         <select onChange={handleSelect} value={Location}>
           {selectList.map((item) => (
@@ -43,7 +44,7 @@ const DrupDown = ({ setLocation, Location }) => {
             </option>
           ))}
         </select>
-        <h4 style={{marginBottom:"1rem"}}>
+        <h4 style={{ marginBottom: "1rem" }}>
           지역: <b>{Location}</b>
         </h4>
       </div>
@@ -51,4 +52,4 @@ const DrupDown = ({ setLocation, Location }) => {
   );
 };
 
-export default DrupDown;
+export default DropDown;

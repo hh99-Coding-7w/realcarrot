@@ -12,10 +12,7 @@ const PostDetail = () => {
   const navigate = useNavigate();
   const params = useParams();
   const data = useSelector((state) => state.postReducer.detailData);
-
   const loginUser = getCookie("username");
-
-  console.log(data);
 
   useEffect(() => {
     dispatch(
@@ -34,7 +31,7 @@ const PostDetail = () => {
     navigate("/main");
     dispatch(__loadPost());
   };
-  console.log(data?.imageUrls);
+
   return (
     <>
       <Header />

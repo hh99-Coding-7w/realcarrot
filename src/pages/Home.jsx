@@ -4,7 +4,6 @@ import Footer from "../components/Footer";
 import icon1 from "../image/icon1.png";
 import icon2 from "../image/icon2.png";
 import icon3 from "../image/icon3.png";
-
 import styled from "styled-components";
 
 const Home = () => {
@@ -146,7 +145,7 @@ const Home = () => {
               />
             </Image>
             <div>
-              <h2 style={{fontSize:"20px"}}>이사정리</h2>
+              <h2 style={{ fontSize: "20px" }}>이사정리</h2>
               <div>5,000원</div>
               <div>울산 남구 신정5동</div>
               <div>
@@ -166,7 +165,7 @@ const Home = () => {
               />
             </Image>
             <div>
-              <h2 style={{fontSize:"20px"}}>야외 테이블 (드림)</h2>
+              <h2 style={{ fontSize: "20px" }}>야외 테이블 (드림)</h2>
               <div>1,000원</div>
               <div>경기도 파주시 운정3동</div>
               <div>
@@ -186,7 +185,7 @@ const Home = () => {
               />
             </Image>
             <div>
-              <h2 style={{fontSize:"20px"}}>삼성 냉장고</h2>
+              <h2 style={{ fontSize: "20px" }}>삼성 냉장고</h2>
               <div>139,000원</div>
               <div>서울 금천구 가산동</div>
               <div>
@@ -206,7 +205,7 @@ const Home = () => {
               />
             </Image>
             <div>
-              <h2 style={{fontSize:"20px"}}>장난감 및 유아매트</h2>
+              <h2 style={{ fontSize: "20px" }}>장난감 및 유아매트</h2>
               <div>2,000원</div>
               <div>경기도 안산시 단원구 고잔동</div>
               <div>
