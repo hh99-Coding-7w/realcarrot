@@ -54,7 +54,6 @@ export const __addPost = (payload) => async (dispatch) => {
       }
     );
     window.alert("작성완료!");
-    console.log(res);
     dispatch(addPost(res.data));
   } catch (error) {
     window.alert("작성에러!");
@@ -62,12 +61,8 @@ export const __addPost = (payload) => async (dispatch) => {
 };
 
 export const __loadPost = (payload) => async (dispatch) => {
-  // console.log(payload);
-  // const myToken = getCookie("authorization");
-  // console.log(myToken);
   try {
     const res = await axios.get("http://3.39.25.179/api/posts");
-    // console.log(res.data);
     dispatch(loadPost(res.data));
   } catch (error) {
     window.alert("로드에러!");
@@ -75,9 +70,7 @@ export const __loadPost = (payload) => async (dispatch) => {
 };
 
 export const __deletePost = (payload) => async (dispatch) => {
-  console.log(payload);
   const myToken = getCookie("authorization");
-  // console.log(myToken);
   try {
     await axios.delete(`http://3.39.25.179/api/post/${payload.id}`, {
       headers: {
@@ -92,9 +85,7 @@ export const __deletePost = (payload) => async (dispatch) => {
 };
 
 export const __updatePost = (payload, id) => async (dispatch) => {
-  // console.log(payload);
   const myToken = getCookie("authorization");
-  // console.log(myToken);
   try {
     const res = await axios.put(
       `http://3.39.25.179/api/post/${payload.id}`,
@@ -110,8 +101,9 @@ export const __updatePost = (payload, id) => async (dispatch) => {
         },
       }
     );
-    console.log(res);
+    console.log(payload.imageUrls);
     dispatch(updatePost(res.data.body));
+    console.log(res.data.body);
     window.alert("수정 완료!");
   } catch (error) {
     window.alert("수정에러!");
@@ -119,7 +111,6 @@ export const __updatePost = (payload, id) => async (dispatch) => {
 };
 
 export const __loadDetail = (payload) => async (dispatch) => {
-  // console.log(payload);
   const myToken = getCookie("authorization");
   try {
     const res = await axios.get(`http://3.39.25.179/api/post/${payload.id}`, {
@@ -127,7 +118,6 @@ export const __loadDetail = (payload) => async (dispatch) => {
         Authorization: myToken,
       },
     });
-    // console.log(res);
     dispatch(loadDetail(res.data));
   } catch (error) {
     window.alert("디테일에러!");
@@ -136,12 +126,8 @@ export const __loadDetail = (payload) => async (dispatch) => {
 
 //리듀서
 const postReducer = (state = initialState, action) => {
-  // console.log(state)
-  // console.log(action.type)
-  // console.log(action.payload)
   switch (action.type) {
     case ADD_POST:
-      // console.log(action.payload);
       return { ...state, data: [...state.data, action.payload] };
 
     case LOAD_POST:
@@ -154,16 +140,12 @@ const postReducer = (state = initialState, action) => {
       return { ...state, data: [...newDeletedata] };
 
     case UPDATE_POST:
-      console.log(state.data);
-      console.log(action.payload);
       const newChangeData = state.data.map((value) => {
         return value.id === action.payload.id ? action.payload : value;
       });
-      console.log(newChangeData);
       return { ...state, data: newChangeData };
 
     case LOAD_DETAIL:
-      console.log(action.payload);
       return { ...state, detailData: action.payload };
 
     default:

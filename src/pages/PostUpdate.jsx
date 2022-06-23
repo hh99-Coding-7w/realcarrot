@@ -18,7 +18,6 @@ const PostUpdate = () => {
   const navigate = useNavigate();
   const params = useParams();
   const id = params.id;
-
   const imageUrlsRef = useRef();
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
@@ -34,14 +33,17 @@ const PostUpdate = () => {
         title: title,
         content: content,
         price: price,
-        imageUrls: imageUrlsRef.current.value,
+        imageUrls: imageUrlsRef.current.url,
         id: id,
       })
     );
+    console.log(imageUrlsRef.current.url);
     navigate("/main");
     dispatch(__loadPost());
   };
+
   const [fileImage, setFileImage] = useState();
+
   const uploadFB = async (e) => {
     const uploaded_file = await uploadBytes(
       ref(storage, `postImages/${e.target.files[0].name}`),
@@ -49,12 +51,11 @@ const PostUpdate = () => {
     );
     const file_url = await getDownloadURL(uploaded_file.ref);
     imageUrlsRef.current = { url: file_url };
-    console.log(imageUrlsRef.current.url);
   };
+
   const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
-    console.log(reader);
     return new Promise((resolve) => {
       reader.onload = () => {
         setFileImage(reader.result);
@@ -62,11 +63,12 @@ const PostUpdate = () => {
       };
     });
   };
+
   return (
     <>
       <Header />
       <FatherBox>
-        <MatherBox>
+        <MotherBox>
           <div style={{ position: "relative" }}>
             <img src={snRl} style={{ width: "100px", height: "100px" }} />
             <input
@@ -95,7 +97,6 @@ const PostUpdate = () => {
               />
             )}
           </div>
-
           <div>
             <h2>제목</h2>
             <Input1
@@ -140,7 +141,7 @@ const PostUpdate = () => {
               }}
               onClick={reloadPost}
             >
-              작성완료
+              수정완료
             </Ok>
             <X
               variant="text"
@@ -155,18 +156,20 @@ const PostUpdate = () => {
               취소
             </X>
           </But>
-        </MatherBox>
+        </MotherBox>
       </FatherBox>
     </>
   );
 };
+
 const FatherBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 100px 0;
 `;
-const MatherBox = styled.div`
+
+const MotherBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -175,6 +178,7 @@ const MatherBox = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 20px;
 `;
+
 const Input1 = styled.input`
   line-height: 1.4;
   background-color: #f2f3f6;
@@ -187,6 +191,7 @@ const Input1 = styled.input`
   color: #212124;
   margin-bottom: 30px;
 `;
+
 const TextInput1 = styled.textarea`
   line-height: 1.4;
   background-color: #f2f3f6;
@@ -200,8 +205,8 @@ const TextInput1 = styled.textarea`
   overflow: hidden;
   resize: none;
   margin-bottom: 30px;
-  /* line-height: -500px; */
 `;
+
 const But = styled.div`
   display: flex;
   gap: 0px 100px;
@@ -219,6 +224,7 @@ const X = styled.button`
     background-color: #f2f3f6;
   }
 `;
+
 const Ok = styled.button`
   padding: 10px 20px;
   border-radius: 10px;

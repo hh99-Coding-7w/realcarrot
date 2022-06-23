@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __loadPost } from "../redux/modules/post";
 import { getCookie } from "../shared/Cookie";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
@@ -14,14 +13,10 @@ const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.postReducer.data);
-  console.log(datas);
 
   useEffect(() => {
     dispatch(__loadPost());
   }, [dispatch]);
-
-
-
 
   return (
     <>
@@ -149,4 +144,5 @@ const Time = styled.p`
   line-height: 1.5;
   font-weight: normal;
 `;
+
 export default Main;

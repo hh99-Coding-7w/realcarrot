@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { __searchPost } from "../redux/modules/search";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
@@ -12,8 +11,6 @@ const PostSearch = () => {
   const dispatch = useDispatch();
   const datas = useSelector((state) => state.searchReducer.data);
   const { payload } = useParams();
-  // console.log(payload);
-  console.log(datas);
 
   useEffect(() => {
     dispatch(__searchPost(payload));
@@ -140,4 +137,5 @@ const Time = styled.p`
   line-height: 1.5;
   font-weight: normal;
 `;
+
 export default PostSearch;
