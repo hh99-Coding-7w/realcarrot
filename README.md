@@ -34,8 +34,7 @@
 ## API 명세서
 
 
-![(https://user-images.githubusercontent.com/105141025/174037627-70c9f058-e93a-4a35-a529-6562a298c429.png)](https://www.notion.so/5-e46792f114dc498298c40eb3b76d544f)
-
+[API명세서]([(https://www.notion.so/5-e46792f114dc498298c40eb3b76d544f)])
 
 
 ## 기능
