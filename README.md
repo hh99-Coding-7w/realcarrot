@@ -34,7 +34,7 @@
 ## API 명세서
 
 
-[API명세서]([(https://www.notion.so/5-e46792f114dc498298c40eb3b76d544f)])
+[API명세서](https://www.notion.so/5-e46792f114dc498298c40eb3b76d544f)
 
 
 ## 기능
@@ -106,4 +106,4 @@ $ yarn add storage
 
 ## 결과
 
-[당근마켓]([http://dictionarytest1.s3-website.ap-northeast-2.amazonaws.com/])
+[당근마켓](http://dictionarytest1.s3-website.ap-northeast-2.amazonaws.com/)
