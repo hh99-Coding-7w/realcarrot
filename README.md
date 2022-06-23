@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+✈ 여행의 민족 ✈
+개발기간
+2022.06.10 - 2022.06.16
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+내용
+🎉코로나로 끝나가는 이 시기에 다시금 여행에 대한 설렘이 살아날 수 있도록 자신이 갔던 여행지의 정보와 후기등을 공유하는 사이트 🎉누군가에게는 여행지에 대한 정보가 될 수 있고, 누군가에게는 자신이 갔던 여행지의 즐거움을 한번 더 기억하게 되는 그런 사이트를 만들고 싶어서 제작하게 되었습니다.
 
-## Available Scripts
+😎 여행의 민족을 제작한 자랑스러운 개발자들
+👉 BE : 강명지, 박선우, 김성현
 
-In the project directory, you can run:
+👉 FE : 임운철, 정대규, 장세화
 
-### `yarn start`
+🛠STACKS🛠
+  
+  
+ 
+API 명세서
+1 2
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+기능
+ 1. 게시글
+ 목록 가져오기
+ 추가하기 (+이미지 업로드하기)
+ 삭제하기
+ 수정하기
+ 2. 회원가입하기
+ 3. 로그인하기
+ 4. 파이어베이스 or S3로 배포!
+페이지별 상세페이지별 상세
+회원가입 페이지
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ 이메일 형식 체크
+ 비밀번호 체크
+로그인 페이지
 
-### `yarn test`
+ 이메일, 패스워드 형식에서 벗어날 시 로그인 막을 것
+메인 페이지(게시글 목록 페이지)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ 게시글 목록 노출
+ 게시글 하나는 작성자, 닉네임, 이미지 미리보기, 텍스트 내용으로 구성
+ 게시글 하나를 클릭 시, 게시글 상세 페이지로 이동
+글 작성 페이지
 
-### `yarn build`
+ 1. 올릴 사진 미리보기
+ 2. 사진을 올려야 작성완료 가능
+ 3. 작성 완료 시 메인 페이지로 이동
+게시글 상세 페이지
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ 작성자만 수정 삭제 가능
+초기설정
+$ yarn add react@18.1.0
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+$ yarn add react-router-dom
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+$ yarn add styled-components
 
-### `yarn eject`
+$ yarn add redux react-redux redux-thunk redux-logger redux-actions redux-devtools-extension
+ 
+$ yarn add enhancer
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+$ yarn add connected-react-router
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+$ yarn add axios
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+$ yarn add firebase@9.8.3
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+$ yarn add storage
+결과
+여행의민족
